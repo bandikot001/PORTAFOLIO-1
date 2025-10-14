@@ -1,17 +1,18 @@
 :root{
   --bg:#292728;
-  --panel-bg:#eaa73a; /* amarillo cinta */
+  --panel-bg:#eaa73a;        /* amarillo cinta */
   --panel-dark:#e89b2b;
   --muted:#cfcfcf;
-  --pink:#d71f61; /* flechas y acento */
+  --pink:#d71f61;            /* flechas */
   --title-yellow:#f0a92b;
   --max-w:1200px;
+  --gap:18px;                /* separación entre tarjetas */
   --ff-title:"Orbitron","Segoe UI",Arial,sans-serif;
   --ff-body:"Open Sans",Arial,sans-serif;
 }
 
 *{box-sizing:border-box}
-html,body{height:100%;margin:0;padding:0}
+html,body{height:100%;margin:0}
 body{
   background:var(--bg);
   color:#f1f1f1;
@@ -23,50 +24,99 @@ body{
 .container{max-width:var(--max-w);margin:0 auto;padding:28px}
 
 /* Header */
-.site-header{position:relative;padding-top:28px;padding-bottom:18px;overflow:visible}
-.header-inner{display:flex;align-items:center;justify-content:space-between}
-.title{margin:0;font-family:var(--ff-title);color:var(--title-yellow);letter-spacing:2px;font-size:36px;text-transform:uppercase;text-shadow:0 6px 20px rgba(0,0,0,0.6)}
-
-/* underline anim */
-.underline-anim{height:4px;width:40%;max-width:700px;background:linear-gradient(90deg,var(--title-yellow),rgba(255,255,255,0.03));margin:12px 0 0 36px;transform-origin:left center;transform:scaleX(0);border-radius:3px;box-shadow:0 4px 18px rgba(240,178,58,0.09);transition:transform .9s cubic-bezier(.2,.9,.25,1)}
+.site-header{padding:28px 0 18px}
+.title{
+  margin:0;text-align:center;
+  font-family:var(--ff-title);text-transform:uppercase;letter-spacing:2px;
+  color:var(--title-yellow);font-size:48px;
+}
+.underline-anim{
+  height:6px;width:40%;max-width:700px;margin:18px auto 0;
+  background:linear-gradient(90deg,var(--title-yellow),rgba(255,255,255,0.03));
+  border-radius:3px;transform-origin:left center;transform:scaleX(0);
+  box-shadow:0 6px 22px rgba(240,178,58,0.09);
+  transition:transform .9s cubic-bezier(.2,.9,.25,1);
+}
 
 /* Hero */
-.hero-title{text-align:center;font-family:var(--ff-title);font-size:28px;margin:20px 0 6px;color:#fff}
-.hero-sub{text-align:center;color:var(--muted);margin:0 0 28px}
+.hero-title{text-align:center;font-family:var(--ff-title);font-size:36px;margin:28px 0 8px}
+.hero-sub{text-align:center;color:var(--muted);max-width:880px;margin:0 auto 28px;line-height:1.4}
 
-/* ---- Media rows ---- */
-.media-row{margin:34px 0}
-.media-title{font-family:var(--ff-title);color:var(--title-yellow);font-size:26px;margin:0 0 12px;padding-left:14px;display:inline-block;}
+/* Media rows */
+.media-row{margin:48px 0}
+.media-title{font-family:var(--ff-title);color:var(--title-yellow);font-size:28px;margin:0 0 12px}
 
-/* Carousel wrap and ribbon behavior */
-.carousel-wrap{position:relative;display:flex;align-items:center;height:220px;padding:12px 6px;}
-
-/* Yellow ribbon (background bar) — hidden by default, appears on hover */
-.carousel{flex:1;height:160px;border-radius:6px;background:transparent;display:flex;gap:18px;overflow-x:auto;padding:16px 28px;scroll-behavior:smooth;align-items:center;transition:background .28s ease;border:10px solid transparent}
-.media-row:hover .carousel{background:linear-gradient(90deg,var(--panel-bg),var(--panel-dark));border-color:var(--panel-bg)}
-
-/* Card */
-.card{min-width:320px;height:100%;background:#000;border:10px solid #0a0a0a;border-radius:4px;overflow:hidden;position:relative;flex:0 0 auto;box-shadow:0 10px 30px rgba(0,0,0,0.6);cursor:pointer}
-.thumb{position:absolute;inset:0;background-size:cover;background-position:center}
-.card-overlay{position:absolute;left:8px;bottom:8px;color:#fff;font-weight:700;padding:6px 8px;background:rgba(0,0,0,0.45);border-radius:4px;font-size:12px}
-
-/* Arrows */
-.carousel-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:30;border:0;background:transparent;color:var(--pink);font-size:36px;width:54px;height:54px;display:flex;align-items:center;justify-content:center;cursor:pointer}
-.carousel-arrow.left{left:0}
-.carousel-arrow.right{right:0}
-.carousel-arrow::before{content:"";width:40px;height:40px;border-radius:6px;background:rgba(0,0,0,0.0)}
-.carousel-arrow:hover{filter:drop-shadow(0 6px 10px rgba(0,0,0,0.6))}
-
-/* small responsive tweaks */
-@media (max-width:980px){
-  .card{min-width:260px}
-  .carousel-wrap{height:200px}
+/* Carousel container (sin altura fija) */
+.carousel-wrap{position:relative;display:flex;align-items:center;padding:6px}
+.carousel{
+  flex:1;display:flex;gap:var(--gap);align-items:center;
+  overflow-x:auto;padding:18px 28px;border:10px solid transparent;border-radius:10px;
+  background:transparent;scroll-behavior:smooth;
 }
-@media (max-width:640px){
-  .title{font-size:26px}
-  .carousel-arrow{font-size:28px}
-  .carousel{padding:12px}
+
+/* Cinta amarilla al hover (MUSICALES/FOTO) */
+.media-row:hover .carousel{
+  background:linear-gradient(90deg,var(--panel-bg),var(--panel-dark));
+  border-color:var(--panel-bg);
 }
+/* ARQUITECTURA: cinta amarilla siempre visible */
+#arquitecturaRow .carousel{
+  background:linear-gradient(90deg,var(--panel-bg),var(--panel-dark));
+  border-color:var(--panel-bg);
+}
+
+/* Tarjeta genérica */
+.card{
+  position:relative;flex:0 0 auto;height:auto;
+  border-radius:8px;overflow:hidden;background:#000;
+  box-shadow:0 14px 40px rgba(0,0,0,.7);
+  border:12px solid rgba(0,0,0,.55);
+}
+.card iframe,.card video,.thumb{position:absolute;inset:0;width:100%;height:100%;display:block}
+.thumb{background-size:cover;background-position:center}
+
+/* --- Tamaños por sección --- */
+/* MUSICALES y ARQUITECTURA: 16:9 y 3 visibles en desktop */
+#musicalesRow .card,
+#arquitecturaRow .card{
+  aspect-ratio:16/9;
+  /* 3 visibles: (100% - 2*gap)/3 */
+  flex-basis: calc((100% - 2*var(--gap)) / 3);
+}
+
+/* FOTOGRAFÍA: cuadrado y un poco más pequeño (4 visibles en desktop) */
+#fotoRow .card{
+  aspect-ratio:1/1;
+  /* 4 visibles: (100% - 3*gap)/4 */
+  flex-basis: calc((100% - 3*var(--gap)) / 4);
+}
+
+/* Flechas */
+.carousel-arrow{
+  position:absolute;top:50%;transform:translateY(-50%);
+  z-index:30;border:0;background:transparent;color:var(--pink);
+  font-size:40px;width:56px;height:56px;display:flex;align-items:center;justify-content:center;cursor:pointer;
+}
+.carousel-arrow.left{left:6px} .carousel-arrow.right{right:6px}
+.carousel-arrow:hover{filter:drop-shadow(0 8px 16px rgba(0,0,0,.6))}
 
 /* Footer */
-.site-footer{padding:24px 0;text-align:center;color:var(--muted)}
+.site-footer{padding:32px 0 48px;color:var(--muted)}
+.footer-inner{display:flex;flex-direction:column;gap:14px;align-items:center;justify-content:center}
+.footer-contacts{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:center}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:8px;font-weight:600;text-decoration:none}
+.btn-whatsapp{background:linear-gradient(180deg,#18b46a,#14a55b);color:#fff}
+.btn-mail{background:transparent;color:var(--title-yellow);border:2px solid rgba(240,169,43,0.25)}
+
+/* Responsive: 2 por vista en tablet; 1 en móvil */
+@media (max-width:900px){
+  #musicalesRow .card,#arquitecturaRow .card{flex-basis: calc((100% - var(--gap)) / 2)}
+  #fotoRow .card{flex-basis: calc((100% - var(--gap)) / 2)}
+}
+@media (max-width:560px){
+  .title{font-size:30px}
+  .hero-title{font-size:24px}
+  .carousel{padding:12px}
+  .carousel-arrow{font-size:28px;width:44px;height:44px}
+  #musicalesRow .card,#arquitecturaRow .card,#fotoRow .card{flex-basis:100%}
+}

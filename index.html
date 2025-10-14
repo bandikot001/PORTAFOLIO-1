@@ -7,6 +7,57 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css">
+
+<style>
+/* ===== FIX OVERLAY MOBILE: "Acerca de" debajo del título ===== */
+@media (max-width: 740px) {
+
+  /* Título apilado y centrado */
+  .site-header { height: auto !important; }
+  .site-header .container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .site-header .title{
+    font-size: clamp(28px, 8.5vw, 48px);
+    line-height: 1.08;
+    text-align: center;
+    margin: 18px 0 6px;
+  }
+  .underline-anim{ margin: 6px auto 0; }
+
+  /* --- Anular cualquier posición absoluta del bloque Acerca de --- */
+  .about, .about-toggle, .about-panel{
+    position: static !important;
+    inset: auto !important;
+    transform: none !important;
+    float: none !important;
+    z-index: 0 !important;
+  }
+
+  /* Poner "Acerca de" como bloque debajo del H1 */
+  .about{
+    display: block !important;
+    width: 100% !important;
+    margin: 12px auto 0 !important;
+    text-align: center !important;
+  }
+  .about-toggle{
+    display: inline-flex !important;
+    justify-content: center;
+    margin: 0 auto !important;
+  }
+  .about-panel{
+    width: 100% !important;
+    max-width: 680px !important;
+    margin: 8px auto 0 !important;
+    box-shadow: none !important;
+  }
+}
+</style>
+
 </head>
 <body>
   <!-- Header -->
@@ -117,6 +168,7 @@
   <script src="script.js"></script>
 </body>
 </html>
+
 
 
 

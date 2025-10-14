@@ -6,36 +6,48 @@ document.addEventListener('DOMContentLoaded', () => {
   const u = document.getElementById('underlineAnim');
   if (u) setTimeout(()=> u.style.transform = 'scaleX(1)', 180);
 
-  // ===== Pestaña “Acerca de” =====
-  const about = document.getElementById('about');
-  const toggle = document.getElementById('aboutToggle');
-  if (toggle && about){
-    const panel = document.getElementById('aboutPanel');
+ // ===== Pestaña “Acerca de” =====
+const about  = document.getElementById('about');
+const toggle = about ? about.querySelector('.about-toggle') : null;
+const panel  = document.getElementById('about-panel');
 
-    // Click abre/cierra
-    toggle.addEventListener('click', (e)=>{
-      e.stopPropagation();
-      about.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', about.classList.contains('open'));
-    });
+if (about && toggle && panel){
+  // estado inicial
+  panel.setAttribute('aria-hidden', 'true');
+  toggle.setAttribute('aria-expanded', 'false');
 
-    // Cerrar si se hace click fuera
-    document.addEventListener('click', (e)=>{
-      if (!about.contains(e.target)){
-        about.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
-      }
-    });
+  // Click abre/cierra
+  toggle.addEventListener('click', (e)=>{
+    e.stopPropagation();
+    const isOpen = about.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(isOpen));
+    panel.setAttribute('aria-hidden', String(!isOpen));
+  });
 
-    // Opcional: abrir con hover (solo dispositivos con puntero fino)
-    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches){
-      about.addEventListener('mouseenter', ()=>about.classList.add('open'));
-      about.addEventListener('mouseleave', ()=>{
-        about.classList.remove('open');
-        toggle.setAttribute('aria-expanded','false');
-      });
+  // Cerrar al hacer click fuera
+  document.addEventListener('click', (e)=>{
+    if (!about.contains(e.target) && about.classList.contains('open')){
+      about.classList.remove('open');
+      toggle.setAttribute('aria-expanded','false');
+      panel.setAttribute('aria-hidden','true');
     }
+  });
+
+  // Hover opcional en desktop
+  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches){
+    about.addEventListener('mouseenter', ()=>{
+      about.classList.add('open');
+      toggle.setAttribute('aria-expanded','true');
+      panel.setAttribute('aria-hidden','false');
+    });
+    about.addEventListener('mouseleave', ()=>{
+      about.classList.remove('open');
+      toggle.setAttribute('aria-expanded','false');
+      panel.setAttribute('aria-hidden','true');
+    });
   }
+}
+
 
   // ===== Carruseles: flechas + rueda horizontal =====
   document.querySelectorAll('.carousel-wrap').forEach(wrap=>{
@@ -129,3 +141,4 @@ document.addEventListener('DOMContentLoaded', () => {
     setState(!open);
   }, { passive: true });
 });
+

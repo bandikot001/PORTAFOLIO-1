@@ -3,149 +3,24 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Portafolio David Cediel</title>
+  <title>Portafolio David Cediel — Test</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <h1 class="title">PORTAFOLIO DAVID CEDIEL</h1>
-
-      <div class="acerca-wrap" id="acercaWrap">
-        <button class="acerca-btn" id="acercaBtn" aria-expanded="false" aria-controls="acercaPanel">
-          Acerca de <span class="caret">▾</span>
-        </button>
-        <div class="acerca-indicator" aria-hidden="true"></div>
-
-        <div class="acerca-panel" id="acercaPanel" role="region" aria-hidden="true">
-          <div class="panel-inner">
-            <p>Fotógrafo egresado Universidad Jorge Tadeo Lozano<br>
-               Arquitecto Universidad Piloto de Colombia</p>
-            <a class="cv-link" href="https://github.com/bandikot001/PORTAFOLIO-1/raw/main/HOJA%20DE%20VIDA%20JUAN%20CEDIEL%2025-26%202.pdf" target="_blank" rel="noopener">
-              Ver hoja de vida formal
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- línea amarilla animada -->
-    <div class="underline-anim" id="underlineAnim" aria-hidden="true"></div>
-  </header>
-
-  <main class="main">
-    <section class="hero container">
-      <h2 class="hero-title">CREACION Y EDICIÓN DE VIDEOS</h2>
-      <p class="hero-sub">Experiencia en campo grabando con cámara profesional o celular y edición en Premiere.</p>
-    </section>
-
-    <!-- NUEVA SECCIÓN: Media (Musicales / Arquitectura / Fotografía) -->
-    <section id="media-sections" class="container section">
-      <!-- Musicales -->
-      <div class="media-row" id="musicalesRow">
-        <h3 class="media-title">MUSIC ALES</h3>
-
-        <div class="carousel-wrap">
-          <button class="carousel-arrow left" aria-label="Anterior">&#x25C0;</button>
-
-          <div class="carousel" data-name="musicales">
-            <!-- Cada .card usa data-video con el ID de YouTube -->
-            <div class="card" data-video="p_3IVVkOhiM">
-              <div class="thumb" style="background-image:url('https://img.youtube.com/vi/p_3IVVkOhiM/hqdefault.jpg')"></div>
-              <div class="card-overlay"><span class="time"></span></div>
-            </div>
-
-            <div class="card" data-video="O1JJXV_I0aY">
-              <div class="thumb" style="background-image:url('https://img.youtube.com/vi/O1JJXV_I0aY/hqdefault.jpg')"></div>
-              <div class="card-overlay"><span class="time"></span></div>
-            </div>
-
-            <div class="card" data-video="ipkuuiETDNM">
-              <div class="thumb" style="background-image:url('https://img.youtube.com/vi/ipkuuiETDNM/hqdefault.jpg')"></div>
-              <div class="card-overlay"><span class="time"></span></div>
-            </div>
-
-            <div class="card" data-video="dc5oJkI1rq4">
-              <div class="thumb" style="background-image:url('https://img.youtube.com/vi/dc5oJkI1rq4/hqdefault.jpg')"></div>
-              <div class="card-overlay"><span class="time"></span></div>
-            </div>
-
-            <div class="card" data-video="weunTmGMdsg">
-              <div class="thumb" style="background-image:url('https://img.youtube.com/vi/weunTmGMdsg/hqdefault.jpg')"></div>
-              <div class="card-overlay"><span class="time"></span></div>
-            </div>
-
-            <div class="card" data-video="UnTcmtid_3E">
-              <div class="thumb" style="background-image:url('https://img.youtube.com/vi/UnTcmtid_3E/hqdefault.jpg')"></div>
-              <div class="card-overlay"><span class="time"></span></div>
-            </div>
-          </div>
-
-          <button class="carousel-arrow right" aria-label="Siguiente">&#x25B6;</button>
-        </div>
-      </div>
-
-      <!-- Arquitectura (por ahora placeholder; pega IDs igual que en musicales cuando los tengas) -->
-      <div class="media-row" id="arquitecturaRow">
-        <h3 class="media-title">ARQUITECTURA</h3>
-
-        <div class="carousel-wrap">
-          <button class="carousel-arrow left" aria-label="Anterior">&#x25C0;</button>
-          <div class="carousel" data-name="arquitectura">
-            <!-- placeholder cards: reemplaza data-video por los IDs que me enviarás -->
-            <div class="card" data-video="p_3IVVkOhiM">
-              <div class="thumb" style="background-image:url('https://img.youtube.com/vi/p_3IVVkOhiM/hqdefault.jpg')"></div>
-              <div class="card-overlay"></div>
-            </div>
-            <div class="card" data-video="O1JJXV_I0aY">
-              <div class="thumb" style="background-image:url('https://img.youtube.com/vi/O1JJXV_I0aY/hqdefault.jpg')"></div>
-              <div class="card-overlay"></div>
-            </div>
-            <div class="card" data-video="ipkuuiETDNM">
-              <div class="thumb" style="background-image:url('https://img.youtube.com/vi/ipkuuiETDNM/hqdefault.jpg')"></div>
-              <div class="card-overlay"></div>
-            </div>
-          </div>
-          <button class="carousel-arrow right" aria-label="Siguiente">&#x25B6;</button>
-        </div>
-      </div>
-
-      <!-- Fotografía (placeholder) -->
-      <div class="media-row" id="fotografiaRow">
-        <h3 class="media-title">FOTOGRAFÍA</h3>
-
-        <div class="carousel-wrap">
-          <button class="carousel-arrow left" aria-label="Anterior">&#x25C0;</button>
-          <div class="carousel" data-name="fotografia">
-            <div class="card" data-video="dc5oJkI1rq4">
-              <div class="thumb" style="background-image:url('https://img.youtube.com/vi/dc5oJkI1rq4/hqdefault.jpg')"></div>
-              <div class="card-overlay"></div>
-            </div>
-            <div class="card" data-video="weunTmGMdsg">
-              <div class="thumb" style="background-image:url('https://img.youtube.com/vi/weunTmGMdsg/hqdefault.jpg')"></div>
-              <div class="card-overlay"></div>
-            </div>
-            <div class="card" data-video="UnTcmtid_3E">
-              <div class="thumb" style="background-image:url('https://img.youtube.com/vi/UnTcmtid_3E/hqdefault.jpg')"></div>
-              <div class="card-overlay"></div>
-            </div>
-          </div>
-          <button class="carousel-arrow right" aria-label="Siguiente">&#x25B6;</button>
-        </div>
-      </div>
-    </section>
-    <!-- FIN media-sections -->
-
-  </main>
-
-  <footer class="site-footer">
-    <div class="container">
-      <small>© <span id="year"></span> DAVID CEDIEL — Render & Visuals</small>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
-</body>
-</html>
+  <style>
+    :root{
+      --bg:#292728;
+      --panel-bg:#eaa73a;
+      --panel-dark:#e89b2b;
+      --muted:#cfcfcf;
+      --pink:#d71f61;
+      --title-yellow:#f0a92b;
+      --max-w:1200px;
+      --ff-title:"Orbitron","Segoe UI",Arial,sans-serif;
+      --ff-body:"Open Sans",Arial,sans-serif;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;padding:0}
+    body{
+      background:var(--bg);
+      color:#f1f1f1;
+      font-family:

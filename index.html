@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portafolio David Cediel</title>
+
+  <!-- Tipografía: puedes cambiar o eliminar -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1 class="title">PORTAFOLIO DAVID CEDIEL</h1>
+
+      <div class="acerca-wrap" id="acercaWrap">
+        <button class="acerca-btn" id="acercaBtn" aria-expanded="false" aria-controls="acercaPanel">
+          Acerca de <span class="caret">▾</span>
+        </button>
+
+        <!-- Línea/indicator rosa cuando panel cerrado -->
+        <div class="acerca-indicator" aria-hidden="true"></div>
+
+        <!-- Panel desplegable -->
+        <div class="acerca-panel" id="acercaPanel" role="region" aria-hidden="true">
+          <div class="panel-inner">
+            <p>Fotógrafo egresado Universidad Jorge Tadeo Lozano<br>
+               Arquitecto Universidad Piloto de Colombia</p>
+            <a class="cv-link" href="https://github.com/bandikot001/PORTAFOLIO-1/raw/main/HOJA%20DE%20VIDA%20JUAN%20CEDIEL%2025-26%202.pdf" target="_blank" rel="noopener">
+              Ver hoja de vida formal
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- línea amarilla animada -->
+    <div class="underline-anim" id="underlineAnim" aria-hidden="true"></div>
+  </header>
+
+  <main class="main">
+    <!-- espacio para contenido / galería en el futuro -->
+    <section class="hero container">
+      <!-- deja en blanco; aquí irá la galería / portafolio -->
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

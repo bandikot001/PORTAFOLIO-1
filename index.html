@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Portafolio David Cediel</title>
 
-  <!-- Tipografía: puedes cambiar o eliminar -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -19,11 +17,8 @@
         <button class="acerca-btn" id="acercaBtn" aria-expanded="false" aria-controls="acercaPanel">
           Acerca de <span class="caret">▾</span>
         </button>
-
-        <!-- Línea/indicator rosa cuando panel cerrado -->
         <div class="acerca-indicator" aria-hidden="true"></div>
 
-        <!-- Panel desplegable -->
         <div class="acerca-panel" id="acercaPanel" role="region" aria-hidden="true">
           <div class="panel-inner">
             <p>Fotógrafo egresado Universidad Jorge Tadeo Lozano<br>
@@ -41,11 +36,115 @@
   </header>
 
   <main class="main">
-    <!-- espacio para contenido / galería en el futuro -->
     <section class="hero container">
-      <!-- deja en blanco; aquí irá la galería / portafolio -->
+      <h2 class="hero-title">CREACION Y EDICIÓN DE VIDEOS</h2>
+      <p class="hero-sub">Experiencia en campo grabando con cámara profesional o celular y edición en Premiere.</p>
     </section>
+
+    <!-- NUEVA SECCIÓN: Media (Musicales / Arquitectura / Fotografía) -->
+    <section id="media-sections" class="container section">
+      <!-- Musicales -->
+      <div class="media-row" id="musicalesRow">
+        <h3 class="media-title">MUSIC ALES</h3>
+
+        <div class="carousel-wrap">
+          <button class="carousel-arrow left" aria-label="Anterior">&#x25C0;</button>
+
+          <div class="carousel" data-name="musicales">
+            <!-- Cada .card usa data-video con el ID de YouTube -->
+            <div class="card" data-video="p_3IVVkOhiM">
+              <div class="thumb" style="background-image:url('https://img.youtube.com/vi/p_3IVVkOhiM/hqdefault.jpg')"></div>
+              <div class="card-overlay"><span class="time"></span></div>
+            </div>
+
+            <div class="card" data-video="O1JJXV_I0aY">
+              <div class="thumb" style="background-image:url('https://img.youtube.com/vi/O1JJXV_I0aY/hqdefault.jpg')"></div>
+              <div class="card-overlay"><span class="time"></span></div>
+            </div>
+
+            <div class="card" data-video="ipkuuiETDNM">
+              <div class="thumb" style="background-image:url('https://img.youtube.com/vi/ipkuuiETDNM/hqdefault.jpg')"></div>
+              <div class="card-overlay"><span class="time"></span></div>
+            </div>
+
+            <div class="card" data-video="dc5oJkI1rq4">
+              <div class="thumb" style="background-image:url('https://img.youtube.com/vi/dc5oJkI1rq4/hqdefault.jpg')"></div>
+              <div class="card-overlay"><span class="time"></span></div>
+            </div>
+
+            <div class="card" data-video="weunTmGMdsg">
+              <div class="thumb" style="background-image:url('https://img.youtube.com/vi/weunTmGMdsg/hqdefault.jpg')"></div>
+              <div class="card-overlay"><span class="time"></span></div>
+            </div>
+
+            <div class="card" data-video="UnTcmtid_3E">
+              <div class="thumb" style="background-image:url('https://img.youtube.com/vi/UnTcmtid_3E/hqdefault.jpg')"></div>
+              <div class="card-overlay"><span class="time"></span></div>
+            </div>
+          </div>
+
+          <button class="carousel-arrow right" aria-label="Siguiente">&#x25B6;</button>
+        </div>
+      </div>
+
+      <!-- Arquitectura (por ahora placeholder; pega IDs igual que en musicales cuando los tengas) -->
+      <div class="media-row" id="arquitecturaRow">
+        <h3 class="media-title">ARQUITECTURA</h3>
+
+        <div class="carousel-wrap">
+          <button class="carousel-arrow left" aria-label="Anterior">&#x25C0;</button>
+          <div class="carousel" data-name="arquitectura">
+            <!-- placeholder cards: reemplaza data-video por los IDs que me enviarás -->
+            <div class="card" data-video="p_3IVVkOhiM">
+              <div class="thumb" style="background-image:url('https://img.youtube.com/vi/p_3IVVkOhiM/hqdefault.jpg')"></div>
+              <div class="card-overlay"></div>
+            </div>
+            <div class="card" data-video="O1JJXV_I0aY">
+              <div class="thumb" style="background-image:url('https://img.youtube.com/vi/O1JJXV_I0aY/hqdefault.jpg')"></div>
+              <div class="card-overlay"></div>
+            </div>
+            <div class="card" data-video="ipkuuiETDNM">
+              <div class="thumb" style="background-image:url('https://img.youtube.com/vi/ipkuuiETDNM/hqdefault.jpg')"></div>
+              <div class="card-overlay"></div>
+            </div>
+          </div>
+          <button class="carousel-arrow right" aria-label="Siguiente">&#x25B6;</button>
+        </div>
+      </div>
+
+      <!-- Fotografía (placeholder) -->
+      <div class="media-row" id="fotografiaRow">
+        <h3 class="media-title">FOTOGRAFÍA</h3>
+
+        <div class="carousel-wrap">
+          <button class="carousel-arrow left" aria-label="Anterior">&#x25C0;</button>
+          <div class="carousel" data-name="fotografia">
+            <div class="card" data-video="dc5oJkI1rq4">
+              <div class="thumb" style="background-image:url('https://img.youtube.com/vi/dc5oJkI1rq4/hqdefault.jpg')"></div>
+              <div class="card-overlay"></div>
+            </div>
+            <div class="card" data-video="weunTmGMdsg">
+              <div class="thumb" style="background-image:url('https://img.youtube.com/vi/weunTmGMdsg/hqdefault.jpg')"></div>
+              <div class="card-overlay"></div>
+            </div>
+            <div class="card" data-video="UnTcmtid_3E">
+              <div class="thumb" style="background-image:url('https://img.youtube.com/vi/UnTcmtid_3E/hqdefault.jpg')"></div>
+              <div class="card-overlay"></div>
+            </div>
+          </div>
+          <button class="carousel-arrow right" aria-label="Siguiente">&#x25B6;</button>
+        </div>
+      </div>
+    </section>
+    <!-- FIN media-sections -->
+
   </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>© <span id="year"></span> DAVID CEDIEL — Render & Visuals</small>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>

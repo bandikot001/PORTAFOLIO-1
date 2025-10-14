@@ -6,7 +6,26 @@ document.addEventListener('DOMContentLoaded', () => {
   const u = document.getElementById('underlineAnim');
   if (u) setTimeout(()=> u.style.transform = 'scaleX(1)', 180);
 
-  // Flechas y rueda -> scroll horizontal
+  // ----- Pestaña Acerca de -----
+  const about = document.getElementById('about');
+  const toggle = about?.querySelector('.about-toggle');
+  if (toggle) {
+    toggle.addEventListener('click', (e) => {
+      // En móvil / click: toggle
+      e.stopPropagation();
+      about.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', about.classList.contains('open'));
+    });
+    // Cerrar al tocar fuera
+    document.addEventListener('click', (e) => {
+      if (!about.contains(e.target)) {
+        about.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  // ----- Carruseles: flechas + rueda horizontal -----
   document.querySelectorAll('.carousel-wrap').forEach(wrap=>{
     const car = wrap.querySelector('.carousel');
     const left = wrap.querySelector('.carousel-arrow.left');
@@ -22,7 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (left) left.addEventListener('click', ()=> scrollByCard(-1));
     if (right) right.addEventListener('click', ()=> scrollByCard(1));
 
-    // rueda vertical -> horizontal
     car.addEventListener('wheel',(e)=>{
       if (Math.abs(e.deltaX) > 0) return;
       e.preventDefault();
@@ -30,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive:false });
   });
 
-  // Lazy YouTube (autoplay muted al entrar >55% visible)
+  // ----- Lazy YouTube (autoplay muted) -----
   function ytUrl(id){ return `https://www.youtube.com/embed/${encodeURIComponent(id)}?rel=0&autoplay=1&mute=1&modestbranding=1`; }
   const ytObserver = new IntersectionObserver((entries)=>{
     entries.forEach(entry=>{
@@ -51,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { threshold:[0,0.25,0.55,0.9] });
   document.querySelectorAll('.card[data-video]').forEach(c=> ytObserver.observe(c));
 
-  // Vídeos locales (FOTOGRAFÍA)
+  // ----- Vídeos locales (FOTOGRAFÍA) -----
   function safePlay(v){ if (!v || !v.paused) return; const p=v.play(); if (p) p.catch(()=>{}); }
   function safePause(v){ try{ v.pause(); }catch(e){} }
   const localObserver = new IntersectionObserver((entries)=>{

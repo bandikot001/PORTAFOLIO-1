@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Portafolio David Cediel</title>
 
-  <!-- Tipos -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
-  <!-- Estilos -->
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -19,7 +17,7 @@
     </div>
   </header>
 
-  <main class="main">
+  <main>
     <!-- Hero -->
     <section class="hero container">
       <h2 class="hero-title">CREACIÓN Y EDICIÓN DE VIDEOS</h2>
@@ -28,10 +26,10 @@
       </p>
     </section>
 
-    <!-- MUSICALES (16:9, 3 visibles) -->
-    <section class="media-row container" id="musicalesRow">
-      <h3 class="media-title">MUSICALES</h3>
-      <div class="carousel-wrap">
+    <!-- MUSICALES (16:9, full-bleed) -->
+    <section class="media-row" id="musicalesRow">
+      <div class="container narrow"><h3 class="media-title">MUSICALES</h3></div>
+      <div class="carousel-wrap fullbleed">
         <button class="carousel-arrow left" aria-label="Anterior">&#x25C0;</button>
         <div class="carousel" data-name="musicales">
           <div class="card" data-video="p_3IVVkOhiM"><div class="thumb" style="background-image:url('https://img.youtube.com/vi/p_3IVVkOhiM/hqdefault.jpg')"></div></div>
@@ -45,12 +43,12 @@
       </div>
     </section>
 
-    <!-- ARQUITECTURA (16:9, 3 visibles, cinta amarilla fija) -->
-    <section class="media-row container" id="arquitecturaRow">
-      <h3 class="media-title">ARQUITECTURA</h3>
-      <div class="carousel-wrap">
+    <!-- ARQUITECTURA (16:9, full-bleed con cinta fija) -->
+    <section class="media-row" id="arquitecturaRow">
+      <div class="container narrow"><h3 class="media-title">ARQUITECTURA</h3></div>
+      <div class="carousel-wrap fullbleed">
         <button class="carousel-arrow left" aria-label="Anterior">&#x25C0;</button>
-        <div class="carousel arquitectura" data-name="arquitectura">
+        <div class="carousel arquitectura-visible" data-name="arquitectura">
           <div class="card" data-video="9xNrNO7d7fc"><div class="thumb" style="background-image:url('https://img.youtube.com/vi/9xNrNO7d7fc/hqdefault.jpg')"></div></div>
           <div class="card" data-video="2kovHZmMM3Y"><div class="thumb" style="background-image:url('https://img.youtube.com/vi/2kovHZmMM3Y/hqdefault.jpg')"></div></div>
           <div class="card" data-video="EIJuO5EX7As"><div class="thumb" style="background-image:url('https://img.youtube.com/vi/EIJuO5EX7As/hqdefault.jpg')"></div></div>
@@ -65,10 +63,10 @@
       </div>
     </section>
 
-    <!-- FOTOGRAFÍA (cuadrado, más pequeño; usa videos locales) -->
-    <section class="media-row container" id="fotoRow">
-      <h3 class="media-title">FOTOGRAFÍA</h3>
-      <div class="carousel-wrap">
+    <!-- FOTOGRAFÍA (cuadrado, full-bleed, videos locales) -->
+    <section class="media-row" id="fotoRow">
+      <div class="container narrow"><h3 class="media-title">FOTOGRAFÍA</h3></div>
+      <div class="carousel-wrap fullbleed">
         <button class="carousel-arrow left" aria-label="Anterior">&#x25C0;</button>
         <div class="carousel" data-name="fotografia">
           <div class="card" data-local="true"><video preload="none" muted playsinline loop><source src="video1.mp4" type="video/mp4"></video></div>
@@ -95,7 +93,6 @@
     </div>
   </footer>
 
-  <!-- JS -->
   <script src="script.js"></script>
 </body>
 </html>

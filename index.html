@@ -30,70 +30,83 @@
 
     /* Header */
     .site-header{position:relative;padding-top:28px;padding-bottom:18px}
-    .title{margin:0;font-family:var(--ff-title);color:var(--title-yellow);letter-spacing:2px;font-size:36px;text-transform:uppercase;text-align:center}
-    .underline-anim{height:4px;width:40%;max-width:700px;background:linear-gradient(90deg,var(--title-yellow),rgba(255,255,255,0.03));margin:12px auto 0;transform-origin:left center;transform:scaleX(0);border-radius:3px;box-shadow:0 4px 18px rgba(240,178,58,0.09);transition:transform .9s cubic-bezier(.2,.9,.25,1)}
+    .title{margin:0;font-family:var(--ff-title);color:var(--title-yellow);letter-spacing:2px;font-size:48px;text-transform:uppercase;text-align:center}
+    .underline-anim{height:6px;width:40%;max-width:700px;background:linear-gradient(90deg,var(--title-yellow),rgba(255,255,255,0.03));margin:18px auto 0;transform-origin:left center;transform:scaleX(0);border-radius:3px;box-shadow:0 6px 22px rgba(240,178,58,0.09);transition:transform .9s cubic-bezier(.2,.9,.25,1)}
 
-    .hero-title{text-align:center;font-family:var(--ff-title);font-size:28px;margin:20px 0 6px;color:#fff}
-    .hero-sub{text-align:center;color:var(--muted);margin:0 0 28px}
+    .hero-title{text-align:center;font-family:var(--ff-title);font-size:36px;margin:28px 0 8px;color:#fff}
+    .hero-sub{text-align:center;color:var(--muted);margin:0 0 28px;max-width:880px;margin-left:auto;margin-right:auto;line-height:1.4}
 
     /* Media rows */
-    .media-row{margin:40px 0}
-    .media-title{font-family:var(--ff-title);color:var(--title-yellow);font-size:26px;margin:0 0 12px;padding-left:6px;display:block}
+    .media-row{margin:56px 0}
+    .media-title{font-family:var(--ff-title);color:var(--title-yellow);font-size:30px;margin:0 0 18px;padding-left:6px;display:block}
 
-    /* Carousel wrapper */
-    .carousel-wrap{position:relative;display:flex;align-items:center;padding:6px;height:480px} /* altura global del área del carrusel */
-    /* carousel: el área interna donde se colocan tarjetas */
-    .carousel{flex:1;height:420px;border-radius:8px;background:transparent;display:flex;gap:18px;overflow-x:auto;padding:18px 28px;scroll-behavior:smooth;align-items:center;transition:background .28s ease,border-color .2s}
-    /* franja amarilla al hover (o persistente en arquitectura) */
-    .media-row:hover .carousel{background:linear-gradient(90deg,var(--panel-bg),var(--panel-dark));border:10px solid var(--panel-bg)}
-    .carousel.arquitectura-visible{background:linear-gradient(90deg,var(--panel-bg),var(--panel-dark));border:10px solid var(--panel-bg);}
+    /* Carousel wrapper - altura grande (vertically expanded) */
+    .carousel-wrap{position:relative;display:flex;align-items:center;padding:6px;height:920px} /* área total */
+    .carousel{flex:1;height:880px;border-radius:10px;background:transparent;display:flex;gap:22px;overflow-x:auto;padding:20px 32px;scroll-behavior:smooth;align-items:center;transition:background .28s ease,border-color .2s}
+    /* Hover amarillo (musicales y fotografía) */
+    .media-row:hover .carousel{background:linear-gradient(90deg,var(--panel-bg),var(--panel-dark));border:12px solid var(--panel-bg)}
+    /* Arquitectura: franja amarilla siempre visible */
+    .carousel.arquitectura-visible{background:linear-gradient(90deg,var(--panel-bg),var(--panel-dark));border:12px solid var(--panel-bg);}
 
-    /* TARJETA: ahora mucho más alta para no verse aplastada */
+    /* TARJETA: mucha mayor altura (no se aplasta) */
     .card{
-      min-width:560px;           /* ancho mínimo (suficiente para ver el video) */
-      height:100%;               /* toma la altura del .carousel (420px) */
+      min-width:560px;          /* mantengo ancho para no agrandar horizontalmente */
+      height:100%;              /* toma la altura del carousel (880px) */
       background:#000;
-      border-radius:6px;
+      border-radius:8px;
       overflow:hidden;
       position:relative;
       flex:0 0 auto;
-      box-shadow:0 14px 40px rgba(0,0,0,0.7);
+      box-shadow:0 16px 60px rgba(0,0,0,0.75);
       cursor:pointer;
-      border:14px solid rgba(0,0,0,0.6);
+      border:16px solid rgba(0,0,0,0.55);
     }
     .thumb{position:absolute;inset:0;background-size:cover;background-position:center;display:block}
     .card iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+    .card video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;border:0;background:#000}
 
     /* Arrows */
-    .carousel-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:30;border:0;background:transparent;color:var(--pink);font-size:44px;width:64px;height:64px;display:flex;align-items:center;justify-content:center;cursor:pointer}
+    .carousel-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:30;border:0;background:transparent;color:var(--pink);font-size:48px;width:72px;height:72px;display:flex;align-items:center;justify-content:center;cursor:pointer}
     .carousel-arrow.left{left:6px}
     .carousel-arrow.right{right:6px}
-    .carousel-arrow:hover{filter:drop-shadow(0 10px 18px rgba(0,0,0,0.6))}
+    .carousel-arrow:hover{filter:drop-shadow(0 12px 22px rgba(0,0,0,0.6))}
 
-    /* Responsive: reducir en pantallas menores */
-    @media (max-width:1200px){
-      .card{min-width:480px}
-      .carousel{padding:14px}
-      .carousel-wrap{height:420px}
+    /* Footer contact buttons */
+    .footer-contacts{display:flex;gap:12px;align-items:center;justify-content:center;margin-top:18px}
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:8px;font-weight:600;font-family:var(--ff-body);cursor:pointer;text-decoration:none;
+      color:#fff;border:0;box-shadow:0 12px 30px rgba(0,0,0,0.6);
     }
-    @media (max-width:1000px){
-      .card{min-width:380px}
-      .carousel-wrap{height:360px}
-      .carousel{height:320px}
+    .btn-whatsapp{background:linear-gradient(180deg,#18b46a,#14a55b);color:#fff}
+    .btn-mail{background:transparent;color:var(--title-yellow);border:2px solid rgba(240,169,43,0.12);}
+
+    /* Responsive: Reducir en pantallas menores pero mantener altura mayor que antes */
+    @media (max-width:1400px){
+      .title{font-size:42px}
+      .carousel-wrap{height:740px}
+      .carousel{height:700px}
+      .card{min-width:520px}
     }
-    @media (max-width:740px){
-      .card{min-width:300px}
-      .carousel-wrap{height:300px}
-      .carousel{height:260px}
+    @media (max-width:1100px){
+      .carousel-wrap{height:620px}
+      .carousel{height:580px}
+      .card{min-width:420px}
+    }
+    @media (max-width:820px){
+      .carousel-wrap{height:480px}
+      .carousel{height:440px}
+      .card{min-width:340px}
     }
     @media (max-width:520px){
-      .card{min-width:230px}
-      .carousel-wrap{height:220px}
-      .carousel{height:180px}
-      .carousel-arrow{font-size:28px;width:44px;height:44px}
+      .title{font-size:28px}
+      .hero-title{font-size:22px}
+      .carousel-wrap{height:260px}
+      .carousel{height:220px}
+      .card{min-width:220px;height:100%}
+      .carousel-arrow{font-size:26px;width:44px;height:44px}
     }
 
-    .site-footer{padding:24px 0;text-align:center;color:var(--muted)}
+    .site-footer{padding:32px 0 48px;text-align:center;color:var(--muted)}
   </style>
 </head>
 <body>
@@ -106,16 +119,17 @@
 
   <main class="main container">
     <section class="hero">
-      <h2 class="hero-title">CREACION Y EDICIÓN DE VIDEOS</h2>
-      <p class="hero-sub">Experiencia en campo grabando con cámara profesional o celular y edición en Premiere.</p>
+      <h2 class="hero-title">CREACIÓN Y EDICIÓN DE VIDEOS</h2>
+      <p class="hero-sub">
+        Generación de material y de contenido, con ayuda de herramientas IA generadoras de video.
+      </p>
     </section>
 
-    <!-- MUSICALES: -->
+    <!-- MUSICALES -->
     <section class="media-row" id="musicalesRow">
       <h3 class="media-title">MUSICALES</h3>
       <div class="carousel-wrap">
         <button class="carousel-arrow left" aria-label="Anterior">&#x25C0;</button>
-
         <div class="carousel" data-name="musicales">
           <div class="card" data-video="p_3IVVkOhiM"><div class="thumb" style="background-image:url('https://img.youtube.com/vi/p_3IVVkOhiM/hqdefault.jpg')"></div></div>
           <div class="card" data-video="O1JJXV_I0aY"><div class="thumb" style="background-image:url('https://img.youtube.com/vi/O1JJXV_I0aY/hqdefault.jpg')"></div></div>
@@ -124,18 +138,16 @@
           <div class="card" data-video="weunTmGMdsg"><div class="thumb" style="background-image:url('https://img.youtube.com/vi/weunTmGMdsg/hqdefault.jpg')"></div></div>
           <div class="card" data-video="UnTcmtid_3E"><div class="thumb" style="background-image:url('https://img.youtube.com/vi/UnTcmtid_3E/hqdefault.jpg')"></div></div>
         </div>
-
         <button class="carousel-arrow right" aria-label="Siguiente">&#x25B6;</button>
       </div>
     </section>
 
-    <!-- ARQUITECTURA: franja amarilla persistente -->
+    <!-- ARQUITECTURA -->
     <section class="media-row" id="arquitecturaRow">
       <h3 class="media-title">ARQUITECTURA</h3>
       <div class="carousel-wrap">
         <button class="carousel-arrow left" aria-label="Anterior">&#x25C0;</button>
-
-        <div class="carousel" data-name="arquitectura" id="arquCarousel">
+        <div class="carousel arquitectura" data-name="arquitectura">
           <div class="card" data-video="9xNrNO7d7fc"><div class="thumb" style="background-image:url('https://img.youtube.com/vi/9xNrNO7d7fc/hqdefault.jpg')"></div></div>
           <div class="card" data-video="2kovHZmMM3Y"><div class="thumb" style="background-image:url('https://img.youtube.com/vi/2kovHZmMM3Y/hqdefault.jpg')"></div></div>
           <div class="card" data-video="EIJuO5EX7As"><div class="thumb" style="background-image:url('https://img.youtube.com/vi/EIJuO5EX7As/hqdefault.jpg')"></div></div>
@@ -146,21 +158,25 @@
           <div class="card" data-video="u305GyosM_g"><div class="thumb" style="background-image:url('https://img.youtube.com/vi/u305GyosM_g/hqdefault.jpg')"></div></div>
           <div class="card" data-video="Lx21SxgKyqo"><div class="thumb" style="background-image:url('https://img.youtube.com/vi/Lx21SxgKyqo/hqdefault.jpg')"></div></div>
         </div>
-
         <button class="carousel-arrow right" aria-label="Siguiente">&#x25B6;</button>
       </div>
     </section>
 
-    <!-- FOTOGRAFÍA (placeholder por ahora) -->
+    <!-- FOTOGRAFÍA: vídeos locales en la raíz -->
     <section class="media-row" id="fotoRow">
       <h3 class="media-title">FOTOGRAFÍA</h3>
       <div class="carousel-wrap">
         <button class="carousel-arrow left" aria-label="Anterior">&#x25C0;</button>
 
         <div class="carousel" data-name="fotografia">
-          <div class="card" data-video=""><div class="thumb" style="background-color:#111"></div></div>
-          <div class="card" data-video=""><div class="thumb" style="background-color:#111"></div></div>
-          <div class="card" data-video=""><div class="thumb" style="background-color:#111"></div></div>
+          <!-- vídeos locales: video1.mp4 ... video7.mp4 (en la raíz del repo) -->
+          <div class="card" data-local="true"><video preload="none" muted playsinline loop><source src="video1.mp4" type="video/mp4"></video></div>
+          <div class="card" data-local="true"><video preload="none" muted playsinline loop><source src="video2.mp4" type="video/mp4"></video></div>
+          <div class="card" data-local="true"><video preload="none" muted playsinline loop><source src="video3.mp4" type="video/mp4"></video></div>
+          <div class="card" data-local="true"><video preload="none" muted playsinline loop><source src="video4.mp4" type="video/mp4"></video></div>
+          <div class="card" data-local="true"><video preload="none" muted playsinline loop><source src="video5.mp4" type="video/mp4"></video></div>
+          <div class="card" data-local="true"><video preload="none" muted playsinline loop><source src="video6.mp4" type="video/mp4"></video></div>
+          <div class="card" data-local="true"><video preload="none" muted playsinline loop><source src="video7.mp4" type="video/mp4"></video></div>
         </div>
 
         <button class="carousel-arrow right" aria-label="Siguiente">&#x25B6;</button>
@@ -169,63 +185,117 @@
 
   </main>
 
-  <footer class="site-footer container"><small>© DAVID CEDIEL — Render & Visuals</small></footer>
+  <footer class="site-footer container">
+    <small>© DAVID CEDIEL — Render & Visuals</small>
+
+    <div class="footer-contacts" aria-hidden="false">
+      <!-- WhatsApp: +57 300 355 81 80  => wa.me/573003558180 -->
+      <a class="btn btn-whatsapp" href="https://wa.me/573003558180" target="_blank" rel="noopener noreferrer">
+        📱 Contacto WhatsApp
+      </a>
+
+      <!-- Email: cdlrecords@gmail.com -->
+      <a class="btn btn-mail" href="mailto:cedielrecords@gmail.com">
+        ✉️ Enviar correo
+      </a>
+    </div>
+  </footer>
 
   <script>
-    (function(){
-      // anim underline
-      setTimeout(()=>{ const u = document.getElementById('underlineAnim'); if(u) u.style.transform='scaleX(1)'; },160);
+  (function(){
+    // underline animation
+    setTimeout(()=>{ const u = document.getElementById('underlineAnim'); if(u) u.style.transform='scaleX(1)'; },160);
 
-      // make arquitectura ribbon visible permanently
-      document.querySelectorAll('.carousel').forEach(c=>{
-        if (c.closest('#arquitecturaRow')) c.classList.add('arquitectura-visible');
-      });
+    // Add arquitectura-visible class so its ribbon is always shown
+    document.querySelectorAll('.carousel').forEach(c=>{
+      if (c.closest('#arquitecturaRow')) c.classList.add('arquitectura-visible');
+    });
 
-      // arrows + wheel horizontal
-      document.querySelectorAll('.carousel-wrap').forEach(wrap=>{
-        const car = wrap.querySelector('.carousel');
-        const left = wrap.querySelector('.carousel-arrow.left');
-        const right = wrap.querySelector('.carousel-arrow.right');
+    // arrows + wheel horizontal
+    document.querySelectorAll('.carousel-wrap').forEach(wrap=>{
+      const car = wrap.querySelector('.carousel');
+      const left = wrap.querySelector('.carousel-arrow.left');
+      const right = wrap.querySelector('.carousel-arrow.right');
 
-        function scrollByCard(dir){
-          const card = car.querySelector('.card');
-          if(!card) return;
-          const w = card.getBoundingClientRect().width + 18;
-          car.scrollBy({ left: dir*w, behavior: 'smooth' });
-        }
-        if(left) left.addEventListener('click', ()=> scrollByCard(-1));
-        if(right) right.addEventListener('click', ()=> scrollByCard(1));
+      function scrollByCard(dir){
+        const card = car.querySelector('.card');
+        if(!card) return;
+        const style = getComputedStyle(card);
+        const gap = parseFloat(getComputedStyle(car).gap) || 22;
+        const w = card.getBoundingClientRect().width + gap;
+        car.scrollBy({ left: dir * w, behavior: 'smooth' });
+      }
+      if(left) left.addEventListener('click', ()=> scrollByCard(-1));
+      if(right) right.addEventListener('click', ()=> scrollByCard(1));
 
-        car.addEventListener('wheel',(e)=>{
-          if (Math.abs(e.deltaX) > 0) return;
-          e.preventDefault();
-          car.scrollBy({ left: e.deltaY, behavior: 'auto' });
-        }, { passive:false });
-      });
+      car.addEventListener('wheel',(e)=>{
+        if (Math.abs(e.deltaX) > 0) return;
+        e.preventDefault();
+        car.scrollBy({ left: e.deltaY, behavior: 'auto' });
+      }, { passive:false });
+    });
 
-      // Lazy load iframes when card >55% visible (autoplay muted)
-      function ytUrl(id){ return 'https://www.youtube.com/embed/'+encodeURIComponent(id)+'?rel=0&autoplay=1&mute=1&modestbranding=1'; }
-      const io = new IntersectionObserver((entries)=>{
-        entries.forEach(entry=>{
-          const el = entry.target;
-          if(entry.intersectionRatio >= 0.55){
-            if(!el.querySelector('iframe') && el.dataset.video){
-              const id = el.dataset.video;
-              const iframe = document.createElement('iframe');
-              iframe.src = ytUrl(id);
-              iframe.allow = 'autoplay; encrypted-media; picture-in-picture';
-              iframe.width='100%'; iframe.height='100%'; iframe.frameBorder='0';
-              el.appendChild(iframe);
-            }
-          } else {
-            const iframe = el.querySelector('iframe');
-            if(iframe) iframe.remove();
+    // Lazy load for YouTube iframes when card >55% visible
+    function ytUrl(id){ return 'https://www.youtube.com/embed/'+encodeURIComponent(id)+'?rel=0&autoplay=1&mute=1&modestbranding=1'; }
+    const ytObserver = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        const el = entry.target;
+        if(entry.intersectionRatio >= 0.55){
+          if(!el.querySelector('iframe') && el.dataset.video){
+            const id = el.dataset.video;
+            const ifr = document.createElement('iframe');
+            ifr.src = ytUrl(id);
+            ifr.allow = 'autoplay; encrypted-media; picture-in-picture';
+            ifr.width='100%'; ifr.height='100%'; ifr.frameBorder='0';
+            el.appendChild(ifr);
           }
-        });
-      }, { threshold: [0,0.25,0.55,0.9] });
+        } else {
+          const iframe = el.querySelector('iframe');
+          if(iframe) iframe.remove();
+        }
+      });
+    }, { threshold: [0,0.25,0.55,0.9] });
 
-      document.querySelectorAll('.card').forEach(c => io.observe(c));
-    })();
+    // Observe all .card with data-video (YouTube)
+    document.querySelectorAll('.card[data-video]').forEach(c=> ytObserver.observe(c));
+
+    // Local video playback observer (for cards with data-local="true")
+    function safePlay(video){
+      if (!video) return;
+      if (video.paused) {
+        const p = video.play();
+        if (p !== undefined) p.catch(()=>{ /* autoplay blocked */ });
+      }
+    }
+    function safePause(video){ try{ video.pause(); } catch(e){} }
+    const localObserver = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        const card = entry.target;
+        const video = card.querySelector('video');
+        if (!video) return;
+        if (entry.intersectionRatio >= 0.55){
+          safePlay(video);
+        } else {
+          safePause(video);
+        }
+      });
+    }, { threshold: [0,0.25,0.55,0.9] });
+    document.querySelectorAll('.card[data-local="true"]').forEach(c=> localObserver.observe(c));
+
+    // On scroll of carousels, pause local videos outside viewport
+    document.querySelectorAll('.carousel').forEach(car=>{
+      car.addEventListener('scroll', () => {
+        document.querySelectorAll('.card[data-local="true"]').forEach(card => {
+          const rect = card.getBoundingClientRect();
+          const visible = rect.right > 0 && rect.left < (window.innerWidth||document.documentElement.clientWidth) && rect.bottom > 0 && rect.top < (window.innerHeight||document.documentElement.clientHeight);
+          const video = card.querySelector('video');
+          if (!video) return;
+          if (!visible) safePause(video);
+        });
+      }, { passive: true });
+    });
+
+  })();
   </script>
 </body>
 </html>

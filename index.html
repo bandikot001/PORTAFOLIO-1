@@ -16,17 +16,22 @@
       <div class="underline-anim" id="underlineAnim" aria-hidden="true"></div>
     </div>
 
-    <!-- Pestaña Acerca de (desplegable) -->
+    <!-- PESTAÑA ROSA: Acerca de -->
     <aside id="about" class="about">
-      <button class="about-toggle" aria-expanded="false" aria-controls="about-panel">
-        <span>Acerca de</span><i class="caret"></i>
+      <button id="aboutToggle" class="about-toggle" aria-expanded="false" aria-controls="aboutPanel">
+        <span class="about-label">Acerca de</span>
+        <span class="about-caret" aria-hidden="true"></span>
+        <span class="about-underline" aria-hidden="true"></span>
       </button>
-      <div id="about-panel" class="about-panel" role="dialog" aria-label="Acerca de David Cediel">
+
+      <div id="aboutPanel" class="about-panel" role="dialog" aria-label="Acerca de David Cediel">
         <p class="about-text">
           Fotógrafo egresado Universidad Jorge Tadeo Lozano<br>
           Arquitecto Universidad Piloto de Colombia
         </p>
-        <a class="cv-link" href="HOJA%20DE%20VIDA%20JUAN%20CEDIEL%2025-26%202.pdf" target="_blank" rel="noopener">
+        <a class="cv-link"
+           href="HOJA%20DE%20VIDA%20JUAN%20CEDIEL%2025-26%202.pdf"
+           target="_blank" rel="noopener">
           Ver hoja de vida formal
         </a>
       </div>

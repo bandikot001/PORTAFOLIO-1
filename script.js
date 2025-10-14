@@ -106,3 +106,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive:true });
   });
 });
+
+// Toggle accesible para "Acerca de" (funciona con tu HTML actual)
+document.addEventListener('DOMContentLoaded', () => {
+  const btn   = document.getElementById('acercaBtn');
+  const panel = document.getElementById('acercaPanel');
+  const wrap  = document.getElementById('acercaWrap');
+
+  if (!btn || !panel) return;
+
+  // Estado inicial coherente con los atributos ARIA
+  const setState = (open) => {
+    btn.setAttribute('aria-expanded', String(open));
+    panel.setAttribute('aria-hidden', String(!open));
+    wrap && wrap.classList.toggle('is-open', open);
+  };
+  // Garantiza que arranque cerrado si así está marcado en el HTML
+  setState(btn.getAttribute('aria-expanded') === 'true');
+
+  btn.addEventListener('click', () => {
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    setState(!open);
+  }, { passive: true });
+});

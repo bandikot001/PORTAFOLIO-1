@@ -14,7 +14,7 @@
   --pad:28px;
   --gap:18px;
 
-  /* Proporción áurea para vertical rhythm */
+  /* Proporción áurea para ritmos */
   --phi:1.618;
   --space:22px;
 }
@@ -26,15 +26,15 @@ body{
   color:#f1f1f1;
   font-family:var(--ff-body);
   -webkit-font-smoothing:antialiased;
-  overflow-x:hidden; /* evita scroll horizontal por full-bleed */
+  overflow-x:hidden;
 }
 
 /* Contenedores */
 .container{max-width:var(--max-w);margin:0 auto;padding-inline:var(--pad)}
-.container.narrow{max-width:calc(var(--max-w) * 0.9)} /* títulos alineados al bloque central */
+.container.narrow{max-width:calc(var(--max-w)*0.9)}
 
 /* Header */
-.site-header{padding-block:calc(var(--space)*var(--phi)) calc(var(--space)*0.8)}
+.site-header{position:relative;padding-block:calc(var(--space)*var(--phi)) calc(var(--space)*0.8)}
 .title{
   margin:0;text-align:center;
   font-family:var(--ff-title);text-transform:uppercase;letter-spacing:2px;
@@ -48,6 +48,42 @@ body{
   transition:transform .9s cubic-bezier(.2,.9,.25,1);
 }
 
+/* --- Pestaña Acerca de --- */
+.about{
+  position:fixed;
+  top:clamp(90px,12vh,160px);
+  right:12px;
+  z-index:100;
+}
+.about-toggle{
+  display:inline-flex;align-items:center;gap:10px;
+  background:transparent;border:0;cursor:pointer;
+  font-family:var(--ff-title);color:var(--title-yellow);font-size:22px;
+  padding:6px 8px;border-bottom:3px solid rgba(215,31,97,.6);
+}
+.about-toggle .caret{
+  width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-top:10px solid var(--pink);
+  display:inline-block;transform-origin:center;transition:transform .25s ease;
+}
+.about-panel{
+  position:absolute;right:0;top:48px;
+  width:min(520px,92vw);max-width:520px;
+  background:var(--pink);color:#fff;border-radius:26px;
+  padding:22px 26px 18px 26px;
+  box-shadow:0 18px 50px rgba(0,0,0,.55);
+  transform:translateX(100%);opacity:.0;pointer-events:none;
+  transition:transform .35s cubic-bezier(.2,.9,.25,1), opacity .25s ease;
+}
+.about:hover .about-panel{ transform:translateX(0); opacity:1; pointer-events:auto; }
+.about.open .about-panel{ transform:translateX(0); opacity:1; pointer-events:auto; }
+.about.open .about-toggle .caret{ transform:rotate(180deg) }
+.about-text{margin:0 0 12px;font-size:18px;line-height:1.35}
+.cv-link{
+  display:inline-block;color:#fff;text-decoration:none;font-weight:700;
+  border-bottom:2px solid rgba(255,255,255,.7);padding-bottom:4px
+}
+.cv-link:hover{opacity:.9}
+
 /* Hero */
 .hero{padding-block:calc(var(--space)*0.8) calc(var(--space)*1.2)}
 .hero-title{text-align:center;font-family:var(--ff-title);font-size:36px;margin:0 0 10px}
@@ -57,12 +93,12 @@ body{
 .media-row{margin-block:calc(var(--space)*var(--phi))}
 .media-title{font-family:var(--ff-title);color:var(--title-yellow);font-size:28px;margin:0}
 
-/* --- FULL BLEED --- */
+/* --- Full-bleed --- */
 .fullbleed{
-  width:100vw;  /* ocupa todo el ancho de la ventana */
+  width:100vw;
   margin-left:50%;
   transform:translateX(-50%);
-  padding-inline:min(4vw, 28px); /* respiro lateral */
+  padding-inline:min(4vw,28px);
 }
 
 /* Carousel */
@@ -70,19 +106,17 @@ body{
 .carousel{
   flex:1;display:flex;gap:var(--gap);align-items:center;
   overflow-x:auto;scroll-behavior:smooth;
-  padding:18px 0;              /* padding vertical */
-  border:10px solid transparent;border-radius:10px;background:transparent;
+  padding:18px 0;border:10px solid transparent;border-radius:10px;background:transparent;
 }
-
-/* Cinta amarilla al hover */
+/* Cinta amarilla */
 .carousel-wrap:hover .carousel{
   background:linear-gradient(90deg,var(--panel-bg),var(--panel-dark));
   border-color:var(--panel-bg);
 }
-/* Arquitectura: cinta visible permanente */
+/* Arquitectura siempre visible */
 .arquitectura-visible{
-  background:linear-gradient(90deg,var(--panel-bg),var(--panel-dark));
-  border-color:var(--panel-bg);
+  background:linear-gradient(90deg,var(--panel-bg),var(--panel-dark)) !important;
+  border-color:var(--panel-bg) !important;
 }
 
 /* Tarjetas */
@@ -97,17 +131,13 @@ body{
 .thumb{background-size:cover;background-position:center}
 
 /* Dimensiones fluidas por sección */
-
-/* 16:9 para Musicales y Arquitectura (entrarán 3–4, según pantalla) */
+/* Musicales y Arquitectura: 16:9 */
 #musicalesRow .card,
 #arquitecturaRow .card{
   aspect-ratio:16/9;
-  /* ancho fluido: jamás menos de 280px ni más de 420px;
-     alrededor de 30vw para llenar todo el ancho sin huecos */
   flex-basis: clamp(280px, 30vw, 420px);
 }
-
-/* Fotografía cuadrado, más compacto (4–5 visibles en desktop) */
+/* Fotografía: cuadradas */
 #fotoRow .card{
   aspect-ratio:1/1;
   flex-basis: clamp(220px, 22vw, 320px);
@@ -130,7 +160,7 @@ body{
 .btn-whatsapp{background:linear-gradient(180deg,#18b46a,#14a55b);color:#fff}
 .btn-mail{background:transparent;color:var(--title-yellow);border:2px solid rgba(240,169,43,0.25)}
 
-/* Responsivo: compacta vertical y evita huecos */
+/* Responsivo */
 @media (max-width:1100px){
   .title{font-size:42px}
   #musicalesRow .card,#arquitecturaRow .card{flex-basis: clamp(260px, 32vw, 380px)}
@@ -142,8 +172,10 @@ body{
   .carousel-arrow{font-size:28px;width:44px;height:44px}
   #musicalesRow .card,#arquitecturaRow .card{flex-basis: clamp(240px, 46vw, 360px)}
   #fotoRow .card{flex-basis: clamp(180px, 42vw, 280px)}
+  .about{right:8px}
 }
 @media (max-width:520px){
   #musicalesRow .card,#arquitecturaRow .card,#fotoRow .card{flex-basis: 88vw}
   .fullbleed{padding-inline:16px}
+  .about-toggle{font-size:18px}
 }

@@ -71,22 +71,27 @@
 
 
     
-      <!-- Pestaña Acerca de (desplegable) -->
-    <aside id="about" class="about">
-      <button class="about-toggle" aria-expanded="false" aria-controls="about-panel">
-        <span>Acerca de</span><i class="caret"></i>
-      </button>
-      <div id="about-panel" class="about-panel" role="dialog" aria-label="Acerca de David Cediel">
-        <p class="about-text">
-          Fotógrafo egresado Universidad Jorge Tadeo Lozano<br>
-          Arquitecto Universidad Piloto de Colombia
-        </p>
-        <a class="cv-link" href="HOJA%20DE%20VIDA%20JUAN%20CEDIEL%2025-26%202.pdf" target="_blank" rel="noopener">
-          Ver hoja de vida formal
-        </a>
-      </div>
-    </aside>
-  </header>
+<!-- Pestaña Acerca de (desplegable) -->
+<aside id="about" class="about">
+  <button class="about-toggle" id="aboutToggle"
+          aria-expanded="false" aria-controls="aboutPanel">
+    <span>Acerca de</span>
+    <i class="caret" aria-hidden="true"></i>
+    <span class="about-indicator" aria-hidden="true"></span>
+  </button>
+
+  <div id="aboutPanel" class="about-panel"
+       role="region" aria-labelledby="aboutToggle" aria-hidden="true">
+    <p class="about-text">
+      Fotógrafo egresado Universidad Jorge Tadeo Lozano<br>
+      Arquitecto Universidad Piloto de Colombia
+    </p>
+    <a class="cv-link"
+       href="HOJA%20DE%20VIDA%20JUAN%20CEDIEL%2025-26%202.pdf"
+       target="_blank" rel="noopener">Ver hoja de vida formal</a>
+  </div>
+</aside>
+
 
 
   <main>
@@ -168,6 +173,7 @@
   <script src="script.js"></script>
 </body>
 </html>
+
 
 
 

@@ -282,3 +282,66 @@ body{
     box-shadow: none;
   }
 }
+
+/* ======= FIX MOBILE: título arriba, "Acerca de" debajo y dropdown funcionando ======= */
+@media (max-width: 880px){
+
+  /* Apilar contenido del header */
+  .header-inner{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .title{
+    text-align: center;
+    font-size: clamp(28px, 9vw, 40px);
+    line-height: 1.08;
+    margin: 0;
+  }
+
+  /* La línea amarilla no tapa taps y queda debajo visualmente */
+  .underline-anim{
+    margin: 10px auto 0;
+    width: 70%;
+    position: relative;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* Botón/panel: se quedan relativos al wrap y por encima de la línea */
+  .acerca-wrap{
+    position: relative;
+    margin-top: 4px;
+    z-index: 3;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .acerca-btn{ z-index: 4; } /* asegura que reciba el tap */
+
+  /* Panel centrado bajo el botón (sigue absoluto, con tus transiciones) */
+  .acerca-panel{
+    left: 50%;
+    right: auto;
+    top: 44px;
+    transform-origin: top center;
+    max-width: min(92vw, 420px);
+    /* estado cerrado (coincide con tu base) */
+    transform: translate(-50%, -8px) scale(.95);
+  }
+  /* estado abierto (coincide con tu .open existente) */
+  .acerca-wrap.open .acerca-panel{
+    transform: translate(-50%, 0) scale(1);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Pestaña rosada visible y centrada bajo el botón */
+  .acerca-indicator{
+    bottom: -8px;
+    right: 50%;
+    transform: translateX(50%);
+  }
+}

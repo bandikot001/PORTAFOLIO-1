@@ -345,3 +345,60 @@ body{
     transform: translateX(50%);
   }
 }
+
+/* ====== FIX: caret y capas coherentes con tu HTML actual ====== */
+.about .caret{
+  width: 0; height: 0;
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+  border-top: 11px solid var(--pink);
+  display: inline-block;
+  transform-origin: center;
+  transition: transform .22s ease;
+}
+.about.open .caret{ transform: rotate(180deg); }
+
+/* La línea amarilla nunca bloquea taps */
+.underline-anim{ pointer-events: none; }
+
+/* ====== MOBILE: que no se traslape con el título ====== */
+@media (max-width: 780px){
+  /* Título centrado */
+  .title{
+    text-align: center;
+    font-size: clamp(28px, 9vw, 40px);
+    line-height: 1.1;
+    margin: 0;
+  }
+
+  /* El bloque "Acerca de" BAJA debajo del título (flujo normal) */
+  .about{
+    position: relative;      /* en vez de absolute */
+    top: auto; right: auto;  /* anulamos offsets */
+    display: flex;
+    justify-content: center;
+    margin: 10px auto 0;
+    z-index: 3;              /* por encima de la línea amarilla */
+    width: 100%;
+  }
+
+  .about-toggle{
+    padding: 6px 8px 12px;
+    font-size: 18px;
+  }
+
+  /* Panel sigue absoluto PERO relativo al .about y centrado bajo el botón */
+  .about-panel{
+    left: 50%;
+    right: auto;
+    top: 44px;
+    width: min(520px, 92vw);
+    transform-origin: top center;
+    transform: translate(-50%, -8px) scale(.98);
+  }
+  .about.open .about-panel{
+    transform: translate(-50%, 0) scale(1);
+    opacity: 1;
+    pointer-events: auto;
+  }
+}

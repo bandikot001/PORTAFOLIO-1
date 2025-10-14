@@ -2,30 +2,42 @@ document.addEventListener('DOMContentLoaded', () => {
   // Año en footer
   const y = document.getElementById('year'); if (y) y.textContent = new Date().getFullYear();
 
-  // Subrayado animado
+  // Subrayado animado del título
   const u = document.getElementById('underlineAnim');
   if (u) setTimeout(()=> u.style.transform = 'scaleX(1)', 180);
 
-  // ----- Pestaña Acerca de -----
+  // ===== Pestaña “Acerca de” =====
   const about = document.getElementById('about');
-  const toggle = about?.querySelector('.about-toggle');
-  if (toggle) {
-    toggle.addEventListener('click', (e) => {
-      // En móvil / click: toggle
+  const toggle = document.getElementById('aboutToggle');
+  if (toggle && about){
+    const panel = document.getElementById('aboutPanel');
+
+    // Click abre/cierra
+    toggle.addEventListener('click', (e)=>{
       e.stopPropagation();
       about.classList.toggle('open');
       toggle.setAttribute('aria-expanded', about.classList.contains('open'));
     });
-    // Cerrar al tocar fuera
-    document.addEventListener('click', (e) => {
-      if (!about.contains(e.target)) {
+
+    // Cerrar si se hace click fuera
+    document.addEventListener('click', (e)=>{
+      if (!about.contains(e.target)){
         about.classList.remove('open');
         toggle.setAttribute('aria-expanded', 'false');
       }
     });
+
+    // Opcional: abrir con hover (solo dispositivos con puntero fino)
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches){
+      about.addEventListener('mouseenter', ()=>about.classList.add('open'));
+      about.addEventListener('mouseleave', ()=>{
+        about.classList.remove('open');
+        toggle.setAttribute('aria-expanded','false');
+      });
+    }
   }
 
-  // ----- Carruseles: flechas + rueda horizontal -----
+  // ===== Carruseles: flechas + rueda horizontal =====
   document.querySelectorAll('.carousel-wrap').forEach(wrap=>{
     const car = wrap.querySelector('.carousel');
     const left = wrap.querySelector('.carousel-arrow.left');
@@ -48,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive:false });
   });
 
-  // ----- Lazy YouTube (autoplay muted) -----
+  // ===== Lazy YouTube (autoplay muted) =====
   function ytUrl(id){ return `https://www.youtube.com/embed/${encodeURIComponent(id)}?rel=0&autoplay=1&mute=1&modestbranding=1`; }
   const ytObserver = new IntersectionObserver((entries)=>{
     entries.forEach(entry=>{
@@ -69,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { threshold:[0,0.25,0.55,0.9] });
   document.querySelectorAll('.card[data-video]').forEach(c=> ytObserver.observe(c));
 
-  // ----- Vídeos locales (FOTOGRAFÍA) -----
+  // ===== Vídeos locales (Fotografía) =====
   function safePlay(v){ if (!v || !v.paused) return; const p=v.play(); if (p) p.catch(()=>{}); }
   function safePause(v){ try{ v.pause(); }catch(e){} }
   const localObserver = new IntersectionObserver((entries)=>{
@@ -80,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { threshold:[0,0.25,0.55,0.9] });
   document.querySelectorAll('.card[data-local="true"]').forEach(c=> localObserver.observe(c));
 
-  // Pausa locales fuera de vista durante scroll del carrusel
+  // Pausa locales fuera de vista durante scroll
   document.querySelectorAll('.carousel').forEach(car=>{
     car.addEventListener('scroll', ()=>{
       document.querySelectorAll('.card[data-local="true"]').forEach(card=>{

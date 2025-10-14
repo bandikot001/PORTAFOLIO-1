@@ -1,3 +1,11 @@
+/* =========================================================
+   PORTAFOLIO DAVID CEDIEL — styles.css (versión unificada)
+   - Pestaña “Acerca de” con hover/click y cierre al salir
+   - En móvil baja debajo del título (sin traslapes)
+   - Carruseles, tarjetas y footer
+   ========================================================= */
+
+/* ---------- Variables base ---------- */
 :root{
   /* Colores y tipografía */
   --bg:#292728;
@@ -19,6 +27,7 @@
   --space:22px;
 }
 
+/* ---------- Reset mínimo ---------- */
 *{box-sizing:border-box}
 html,body{height:100%;margin:0}
 body{
@@ -29,93 +38,149 @@ body{
   overflow-x:hidden;
 }
 
+/* ---------- Utilidades de layout ---------- */
 .container{max-width:var(--max-w);margin:0 auto;padding-inline:var(--pad)}
 .container.narrow{max-width:calc(var(--max-w)*0.9)}
 
-/* Header */
-.site-header{position:relative;padding-block:calc(var(--space)*var(--phi)) calc(var(--space)*0.8)}
+/* ---------- Header y título ---------- */
+.site-header{
+  position:relative;
+  padding-block:calc(var(--space)*var(--phi)) calc(var(--space)*0.8);
+}
 .title{
-  margin:0;text-align:center;
-  font-family:var(--ff-title);text-transform:uppercase;letter-spacing:2px;
-  color:var(--title-yellow);font-size:48px;
+  margin:0;
+  text-align:center;
+  font-family:var(--ff-title);
+  text-transform:uppercase;
+  letter-spacing:2px;
+  color:var(--title-yellow);
+  font-size:48px;
 }
 .underline-anim{
-  height:6px;width:40%;max-width:700px;margin:18px auto 0;
+  height:6px; width:40%; max-width:700px; margin:18px auto 0;
   background:linear-gradient(90deg,var(--title-yellow),rgba(255,255,255,0.03));
-  border-radius:3px;transform-origin:left center;transform:scaleX(0);
+  border-radius:3px; transform-origin:left center; transform:scaleX(0);
   box-shadow:0 6px 22px rgba(240,178,58,0.09);
   transition:transform .9s cubic-bezier(.2,.9,.25,1);
+  pointer-events:none; /* nunca bloquea taps/clicks */
 }
 
-/* ====== PESTAÑA “ACERCA DE” ====== */
+/* =========================================================
+   PESTAÑA “ACERCA DE”
+   Estructura esperada en HTML:
+   <aside id="about" class="about">
+     <button id="aboutToggle" class="about-toggle" aria-expanded="false" aria-controls="aboutPanel">
+       <span>Acerca de</span><i class="caret"></i><span class="about-indicator" aria-hidden="true"></span>
+     </button>
+     <div id="aboutPanel" class="about-panel" role="region" aria-labelledby="aboutToggle" aria-hidden="true">…</div>
+   </aside>
+   ========================================================= */
 .about{
-  position:absolute; /* dentro del header */
+  position:absolute; /* anclado al header en desktop */
   top:clamp(90px, 12vh, 160px);
-  right:calc(var(--pad));
+  right:var(--pad);
   z-index:100;
   user-select:none;
 }
+
+/* Botón */
 .about-toggle{
   position:relative;
-  background:transparent;border:0;cursor:pointer;
-  display:inline-flex;align-items:center;gap:10px;
+  background:transparent;
+  border:0;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
   padding:6px 8px 14px 8px;
-  font-family:var(--ff-title);font-size:22px;color:var(--title-yellow);
+  font-family:var(--ff-title);
+  font-size:22px;
+  color:var(--title-yellow);
 }
-.about-caret{
-  width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-top:11px solid var(--pink);
-  display:inline-block;transform-origin:center;transition:transform .22s ease;
+
+/* Caret rosado */
+.about .caret{
+  width:0; height:0;
+  border-left:9px solid transparent;
+  border-right:9px solid transparent;
+  border-top:11px solid var(--pink);
+  display:inline-block;
+  transform-origin:center;
+  transition:transform .22s ease;
 }
-.about-underline{
-  position:absolute;left:0;right:0;bottom:3px;height:3px;
-  background:rgba(215,31,97,.7);
+
+/* Rayita rosada bajo el texto (decorativa) */
+.about-indicator{
+  position:absolute; left:0; right:0; bottom:3px; height:3px;
+  background:rgba(215,31,97,.75);
   border-radius:3px;
+  pointer-events:none;
 }
+
+/* Panel rosado */
 .about-panel{
-  position:absolute;right:0;top:48px;
+  position:absolute; right:0; top:48px;
   width:min(520px,92vw);
-  background:var(--pink);color:#fff;border-radius:26px;
-  padding:22px 26px 20px;box-shadow:0 18px 50px rgba(0,0,0,.55);
+  background:var(--pink); color:#fff; border-radius:26px;
+  padding:22px 26px 20px;
+  box-shadow:0 18px 50px rgba(0,0,0,.55);
+
+  /* Estado cerrado */
   transform:translateX(18px) scale(.98);
-  opacity:0;pointer-events:none;
-  transition:transform .32s cubic-bezier(.2,.9,.25,1),opacity .22s ease;
+  opacity:0;
+  pointer-events:none;
+  transition:transform .32s cubic-bezier(.2,.9,.25,1), opacity .22s ease;
 }
-.about-text{margin:0 0 12px;font-size:18px;line-height:1.35}
+
+/* Contenido del panel */
+.about-text{margin:0 0 12px; font-size:18px; line-height:1.35}
 .cv-link{
-  display:inline-block;color:#fff;text-decoration:none;font-weight:700;
-  border-bottom:2px solid rgba(255,255,255,.7);padding-bottom:4px
+  display:inline-block; color:#fff; text-decoration:none; font-weight:700;
+  border-bottom:2px solid rgba(255,255,255,.7); padding-bottom:4px;
 }
 .cv-link:hover{opacity:.9}
 
-.about.open .about-panel{opacity:1;pointer-events:auto;transform:translateX(0) scale(1)}
-.about.open .about-caret{transform:rotate(180deg)}
+/* Estado abierto (lo maneja JS con .about.open) */
+.about.open .about-panel{
+  opacity:1; pointer-events:auto; transform:translateX(0) scale(1);
+}
+.about.open .caret{ transform:rotate(180deg); }
 
-/* ====== HERO ====== */
-.hero{padding-block:calc(var(--space)*0.8) calc(var(--space)*1.2)}
-.hero-title{text-align:center;font-family:var(--ff-title);font-size:36px;margin:0 0 10px}
-.hero-sub{text-align:center;color:var(--muted);max-width:880px;margin:0 auto;line-height:1.45}
+/* ---------- Hero ---------- */
+.hero{
+  padding-block:calc(var(--space)*0.8) calc(var(--space)*1.2);
+}
+.hero-title{
+  text-align:center; font-family:var(--ff-title); font-size:36px; margin:0 0 10px;
+}
+.hero-sub{
+  text-align:center; color:var(--muted); max-width:880px; margin:0 auto; line-height:1.45;
+}
 
-/* ====== SECCIONES ====== */
-.media-row{margin-block:calc(var(--space)*var(--phi))}
-.media-title{font-family:var(--ff-title);color:var(--title-yellow);font-size:28px;margin:0}
+/* ---------- Secciones ---------- */
+.media-row{ margin-block:calc(var(--space)*var(--phi)); }
+.media-title{
+  font-family:var(--ff-title); color:var(--title-yellow); font-size:28px; margin:0;
+}
 
-/* Full-bleed */
+/* Full-bleed (cinta) */
 .fullbleed{
   width:100vw; margin-left:50%; transform:translateX(-50%);
   padding-inline:min(4vw,28px);
 }
 
-/* Carousel */
-.carousel-wrap{position:relative;display:flex;align-items:center}
+/* ---------- Carruseles ---------- */
+.carousel-wrap{ position:relative; display:flex; align-items:center; }
 .carousel{
-  flex:1;display:flex;gap:var(--gap);align-items:center;
-  overflow-x:auto;scroll-behavior:smooth;
-  padding:18px 0;border:10px solid transparent;border-radius:10px;background:transparent;
+  flex:1; display:flex; gap:var(--gap); align-items:center;
+  overflow-x:auto; scroll-behavior:smooth;
+  padding:18px 0; border:10px solid transparent; border-radius:10px; background:transparent;
 }
 .carousel-wrap:hover .carousel{
   background:linear-gradient(90deg,var(--panel-bg),var(--panel-dark));
   border-color:var(--panel-bg);
 }
+/* Mantener visible la cinta en ARQUITECTURA aunque no haya hover */
 .arquitectura-visible{
   background:linear-gradient(90deg,var(--panel-bg),var(--panel-dark)) !important;
   border-color:var(--panel-bg) !important;
@@ -123,16 +188,18 @@ body{
 
 /* Tarjetas */
 .card{
-  position:relative;flex:0 0 auto;height:auto;
-  border-radius:10px;overflow:hidden;background:#000;
+  position:relative; flex:0 0 auto; height:auto;
+  border-radius:10px; overflow:hidden; background:#000;
   box-shadow:0 14px 40px rgba(0,0,0,.7);
   border:12px solid rgba(0,0,0,.55);
 }
-.card iframe,.card video,.thumb{position:absolute;inset:0;width:100%;height:100%;display:block}
-.card video{object-fit:cover}
-.thumb{background-size:cover;background-position:center}
+.card iframe, .card video, .thumb{
+  position:absolute; inset:0; width:100%; height:100%; display:block;
+}
+.card video{ object-fit:cover; }
+.thumb{ background-size:cover; background-position:center; }
 
-/* Dimensiones fluidas */
+/* Dimensiones por fila */
 #musicalesRow .card,
 #arquitecturaRow .card{
   aspect-ratio:16/9;
@@ -145,260 +212,73 @@ body{
 
 /* Flechas */
 .carousel-arrow{
-  position:absolute;top:50%;transform:translateY(-50%);
-  z-index:30;border:0;background:transparent;color:var(--pink);
-  font-size:40px;width:56px;height:56px;display:flex;align-items:center;justify-content:center;cursor:pointer
+  position:absolute; top:50%; transform:translateY(-50%);
+  z-index:30; border:0; background:transparent; color:var(--pink);
+  font-size:40px; width:56px; height:56px; display:flex; align-items:center; justify-content:center; cursor:pointer;
 }
-.carousel-arrow.left{left:6px} .carousel-arrow.right{right:6px}
-.carousel-arrow:hover{filter:drop-shadow(0 8px 16px rgba(0,0,0,.6))}
+.carousel-arrow.left{ left:6px; } .carousel-arrow.right{ right:6px; }
+.carousel-arrow:hover{ filter:drop-shadow(0 8px 16px rgba(0,0,0,.6)); }
 
-/* Footer */
-.site-footer{padding-block:calc(var(--space)*1.2) calc(var(--space)*1.6);color:var(--muted)}
-.footer-inner{display:flex;flex-direction:column;gap:14px;align-items:center;justify-content:center}
-.footer-contacts{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:center}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:8px;font-weight:600;text-decoration:none}
-.btn-whatsapp{background:linear-gradient(180deg,#18b46a,#14a55b);color:#fff}
-.btn-mail{background:transparent;color:var(--title-yellow);border:2px solid rgba(240,169,43,0.25)}
+/* ---------- Footer ---------- */
+.site-footer{
+  padding-block:calc(var(--space)*1.2) calc(var(--space)*1.6);
+  color:var(--muted);
+}
+.footer-inner{
+  display:flex; flex-direction:column; gap:14px; align-items:center; justify-content:center;
+}
+.footer-contacts{
+  display:flex; gap:12px; flex-wrap:wrap; align-items:center; justify-content:center;
+}
+.btn{ display:inline-flex; align-items:center; gap:8px; padding:12px 18px; border-radius:8px; font-weight:600; text-decoration:none; }
+.btn-whatsapp{ background:linear-gradient(180deg,#18b46a,#14a55b); color:#fff; }
+.btn-mail{ background:transparent; color:var(--title-yellow); border:2px solid rgba(240,169,43,0.25); }
 
-/* Responsive */
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
 @media (max-width:1100px){
-  .title{font-size:42px}
-  #musicalesRow .card,#arquitecturaRow .card{flex-basis: clamp(260px, 32vw, 380px)}
-  #fotoRow .card{flex-basis: clamp(200px, 28vw, 300px)}
+  .title{ font-size:42px; }
+  #musicalesRow .card, #arquitecturaRow .card{ flex-basis: clamp(260px, 32vw, 380px); }
+  #fotoRow .card{ flex-basis: clamp(200px, 28vw, 300px); }
 }
+
+/* --- Punto clave móvil: 780px --- */
 @media (max-width:780px){
-  .title{font-size:34px}
-  .hero-title{font-size:26px}
-  .carousel-arrow{font-size:28px;width:44px;height:44px}
-  #musicalesRow .card,#arquitecturaRow .card{flex-basis: clamp(240px, 46vw, 360px)}
-  #fotoRow .card{flex-basis: clamp(180px, 42vw, 280px)}
-  .about{right:16px}
+  .title{
+    text-align:center;
+    font-size:clamp(28px, 9vw, 40px);
+    line-height:1.1;
+    margin:0;
+  }
+
+  /* “Acerca de” BAJA debajo del título y NO se traslapa */
+  .about{
+    position:relative;   /* en flujo normal */
+    top:auto; right:auto;
+    display:flex; justify-content:center;
+    margin:10px auto 0;
+    z-index:3;
+    width:100%;
+  }
+  .about-toggle{ padding:6px 8px 12px; font-size:18px; }
+
+  /* El panel se apila (sin absoluto) para empujar contenido y evitar solapes */
+  .about-panel{
+    position:static;
+    transform:none;
+    width:100%;
+    max-width:680px;
+    margin:8px auto 0;
+    box-shadow:none;
+    opacity:1; /* que no parpadee al abrir */
+    pointer-events:auto;
+  }
+  /* En móvil, la animación no es necesaria al apilar, pero el JS sigue controlando aria-expanded */
 }
+
+/* Más compacto en móviles pequeños */
 @media (max-width:520px){
-  #musicalesRow .card,#arquitecturaRow .card,#fotoRow .card{flex-basis: 88vw}
-  .fullbleed{padding-inline:16px}
-  .about-toggle{font-size:18px}
-}
-
-/* ===== FIX MOBILE: evitar que "Acerca de" se monte en el título ===== */
-@media (max-width: 640px) {
-  .site-header .container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .site-header .title{
-    font-size: clamp(28px, 8vw, 44px);
-    line-height: 1.1;
-    text-align: center;
-    margin: 24px 0 6px;
-  }
-
-  .underline-anim{
-    margin: 6px auto 0;
-  }
-
-  /* Que el bloque Acerca de deje de ser absoluto y baje debajo del título */
-  .about{
-    position: static !important;
-    margin: 12px auto 0;
-    width: 100%;
-    text-align: center;
-    z-index: 0;
-  }
-
-  .about-toggle{
-    position: static !important;
-    display: inline-flex;
-    justify-content: center;
-    margin: 0 auto;
-  }
-
-  /* Si tu panel estaba flotante, en móvil lo apilamos para que empuje contenido */
-  .about-panel{
-    position: static !important;
-    transform: none !important;
-    width: 100%;
-    max-width: 680px;
-    margin: 8px auto 0;
-    box-shadow: none;
-  }
-}
-
-
-/* ===== Comportamiento accesible del panel (sirve en desktop y mobile) ===== */
-#acercaPanel[aria-hidden="true"] { display: none; }
-#acercaPanel[aria-hidden="false"] { display: block; }
-
-/* Por si usas el otro id/clase en alguna versión */
-#about-panel[aria-hidden="true"] { display: none; }
-#about-panel[aria-hidden="false"] { display: block; }
-
-/* Nada por encima bloqueando el tap */
-.acerca-indicator,
-.underline-anim { pointer-events: none; }
-
-/* ===== FIX MOBILE: que "Acerca de" NO se monte en el título y sí reciba taps ===== */
-@media (max-width: 740px) {
-  .site-header { height: auto !important; }
-  .site-header .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .site-header .title {
-    font-size: clamp(28px, 8.5vw, 48px);
-    line-height: 1.08;
-    text-align: center;
-    margin: 18px 0 6px;
-  }
-
-  /* Bajar el bloque y quitar posiciones absolutas que causan traslape */
-  #acercaWrap, .acerca-wrap {
-    position: static !important;
-    margin: 14px auto 0 !important;
-    width: 100%;
-    z-index: 1 !important;
-    text-align: center;
-  }
-
-  .acerca-btn {
-    position: relative;     /* asegura prioridad sobre capas inferiores */
-    z-index: 2;
-    display: inline-flex;
-    align-items: center;
-    gap: .4rem;
-    margin: 0 auto;
-  }
-
-  .acerca-panel {
-    position: static !important;
-    transform: none !important;
-    width: 100%;
-    max-width: 680px;
-    margin: 8px auto 0;
-    box-shadow: none;
-  }
-}
-
-/* ======= FIX MOBILE: título arriba, "Acerca de" debajo y dropdown funcionando ======= */
-@media (max-width: 880px){
-
-  /* Apilar contenido del header */
-  .header-inner{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .title{
-    text-align: center;
-    font-size: clamp(28px, 9vw, 40px);
-    line-height: 1.08;
-    margin: 0;
-  }
-
-  /* La línea amarilla no tapa taps y queda debajo visualmente */
-  .underline-anim{
-    margin: 10px auto 0;
-    width: 70%;
-    position: relative;
-    z-index: 1;
-    pointer-events: none;
-  }
-
-  /* Botón/panel: se quedan relativos al wrap y por encima de la línea */
-  .acerca-wrap{
-    position: relative;
-    margin-top: 4px;
-    z-index: 3;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .acerca-btn{ z-index: 4; } /* asegura que reciba el tap */
-
-  /* Panel centrado bajo el botón (sigue absoluto, con tus transiciones) */
-  .acerca-panel{
-    left: 50%;
-    right: auto;
-    top: 44px;
-    transform-origin: top center;
-    max-width: min(92vw, 420px);
-    /* estado cerrado (coincide con tu base) */
-    transform: translate(-50%, -8px) scale(.95);
-  }
-  /* estado abierto (coincide con tu .open existente) */
-  .acerca-wrap.open .acerca-panel{
-    transform: translate(-50%, 0) scale(1);
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  /* Pestaña rosada visible y centrada bajo el botón */
-  .acerca-indicator{
-    bottom: -8px;
-    right: 50%;
-    transform: translateX(50%);
-  }
-}
-
-/* ====== FIX: caret y capas coherentes con tu HTML actual ====== */
-.about .caret{
-  width: 0; height: 0;
-  border-left: 9px solid transparent;
-  border-right: 9px solid transparent;
-  border-top: 11px solid var(--pink);
-  display: inline-block;
-  transform-origin: center;
-  transition: transform .22s ease;
-}
-.about.open .caret{ transform: rotate(180deg); }
-
-/* La línea amarilla nunca bloquea taps */
-.underline-anim{ pointer-events: none; }
-
-/* ====== MOBILE: que no se traslape con el título ====== */
-@media (max-width: 780px){
-  /* Título centrado */
-  .title{
-    text-align: center;
-    font-size: clamp(28px, 9vw, 40px);
-    line-height: 1.1;
-    margin: 0;
-  }
-
-  /* El bloque "Acerca de" BAJA debajo del título (flujo normal) */
-  .about{
-    position: relative;      /* en vez de absolute */
-    top: auto; right: auto;  /* anulamos offsets */
-    display: flex;
-    justify-content: center;
-    margin: 10px auto 0;
-    z-index: 3;              /* por encima de la línea amarilla */
-    width: 100%;
-  }
-
-  .about-toggle{
-    padding: 6px 8px 12px;
-    font-size: 18px;
-  }
-
-  /* Panel sigue absoluto PERO relativo al .about y centrado bajo el botón */
-  .about-panel{
-    left: 50%;
-    right: auto;
-    top: 44px;
-    width: min(520px, 92vw);
-    transform-origin: top center;
-    transform: translate(-50%, -8px) scale(.98);
-  }
-  .about.open .about-panel{
-    transform: translate(-50%, 0) scale(1);
-    opacity: 1;
-    pointer-events: auto;
-  }
+  #musicalesRow .card, #arquitecturaRow .card, #fotoRow .card{ flex-basis: 88vw; }
+  .fullbleed{ padding-inline:16px; }
 }

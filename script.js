@@ -1,72 +1,83 @@
-:root{
-  --bg:#292728;
-  --panel-bg:#eaa73a; /* amarillo cinta */
-  --panel-dark:#e89b2b;
-  --muted:#cfcfcf;
-  --pink:#d71f61; /* flechas y acento */
-  --title-yellow:#f0a92b;
-  --max-w:1200px;
-  --ff-title:"Orbitron","Segoe UI",Arial,sans-serif;
-  --ff-body:"Open Sans",Arial,sans-serif;
-}
+document.addEventListener('DOMContentLoaded', () => {
+  // Año en footer
+  const y = document.getElementById('year'); if (y) y.textContent = new Date().getFullYear();
 
-*{box-sizing:border-box}
-html,body{height:100%;margin:0;padding:0}
-body{
-  background:var(--bg);
-  color:#f1f1f1;
-  font-family:var(--ff-body);
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-}
+  // Animación subrayado
+  const u = document.getElementById('underlineAnim');
+  if (u) setTimeout(()=> u.style.transform = 'scaleX(1)', 160);
 
-.container{max-width:var(--max-w);margin:0 auto;padding:28px}
+  // Flechas y rueda -> scroll horizontal
+  document.querySelectorAll('.carousel-wrap').forEach(wrap=>{
+    const car = wrap.querySelector('.carousel');
+    const left = wrap.querySelector('.carousel-arrow.left');
+    const right = wrap.querySelector('.carousel-arrow.right');
 
-/* Header */
-.site-header{position:relative;padding-top:28px;padding-bottom:18px;overflow:visible}
-.header-inner{display:flex;align-items:center;justify-content:space-between}
-.title{margin:0;font-family:var(--ff-title);color:var(--title-yellow);letter-spacing:2px;font-size:36px;text-transform:uppercase;text-shadow:0 6px 20px rgba(0,0,0,0.6)}
+    function scrollByCard(dir){
+      const card = car.querySelector('.card');
+      if (!card) return;
+      // ancho tarjeta + gap actual
+      const gap = parseFloat(getComputedStyle(car).gap) || 18;
+      const w = card.getBoundingClientRect().width + gap;
+      car.scrollBy({ left: dir * w, behavior: 'smooth' });
+    }
+    if (left) left.addEventListener('click', ()=> scrollByCard(-1));
+    if (right) right.addEventListener('click', ()=> scrollByCard(1));
 
-/* underline anim */
-.underline-anim{height:4px;width:40%;max-width:700px;background:linear-gradient(90deg,var(--title-yellow),rgba(255,255,255,0.03));margin:12px 0 0 36px;transform-origin:left center;transform:scaleX(0);border-radius:3px;box-shadow:0 4px 18px rgba(240,178,58,0.09);transition:transform .9s cubic-bezier(.2,.9,.25,1)}
+    // rueda vertical -> horizontal
+    car.addEventListener('wheel', (e)=>{
+      if (Math.abs(e.deltaX) > 0) return;
+      e.preventDefault();
+      car.scrollBy({ left: e.deltaY, behavior: 'auto' });
+    }, { passive:false });
+  });
 
-/* Hero */
-.hero-title{text-align:center;font-family:var(--ff-title);font-size:28px;margin:20px 0 6px;color:#fff}
-.hero-sub{text-align:center;color:var(--muted);margin:0 0 28px}
+  // Lazy YouTube: crea iframe cuando la tarjeta es visible (>55%) y autoplay (mute)
+  function ytUrl(id){ return `https://www.youtube.com/embed/${encodeURIComponent(id)}?rel=0&autoplay=1&mute=1&modestbranding=1`; }
+  const ytObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      const el = entry.target;
+      if (entry.intersectionRatio >= 0.55){
+        if (!el.querySelector('iframe') && el.dataset.video){
+          const id = el.dataset.video;
+          const ifr = document.createElement('iframe');
+          ifr.src = ytUrl(id);
+          ifr.allow = 'autoplay; encrypted-media; picture-in-picture';
+          ifr.width = '100%'; ifr.height = '100%'; ifr.frameBorder = '0';
+          el.appendChild(ifr);
+        }
+      } else {
+        const ifr = el.querySelector('iframe');
+        if (ifr) ifr.remove();
+      }
+    });
+  }, { threshold: [0,0.25,0.55,0.9] });
+  document.querySelectorAll('.card[data-video]').forEach(c=> ytObserver.observe(c));
 
-/* ---- Media rows ---- */
-.media-row{margin:34px 0}
-.media-title{font-family:var(--ff-title);color:var(--title-yellow);font-size:26px;margin:0 0 12px;padding-left:14px;display:inline-block;}
+  // Vídeos locales (FOTOGRAFÍA): play/pause cuando entran/salen
+  function safePlay(v){ if (!v || !v.paused) return; const p=v.play(); if (p) p.catch(()=>{}); }
+  function safePause(v){ try{ v.pause(); }catch(e){} }
 
-/* Carousel wrap and ribbon behavior */
-.carousel-wrap{position:relative;display:flex;align-items:center;height:220px;padding:12px 6px;}
+  const localObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      const card = entry.target;
+      const v = card.querySelector('video');
+      if (!v) return;
+      if (entry.intersectionRatio >= 0.55) safePlay(v); else safePause(v);
+    });
+  }, { threshold: [0,0.25,0.55,0.9] });
+  document.querySelectorAll('.card[data-local="true"]').forEach(c=> localObserver.observe(c));
 
-/* Yellow ribbon (background bar) — hidden by default, appears on hover */
-.carousel{flex:1;height:160px;border-radius:6px;background:transparent;display:flex;gap:18px;overflow-x:auto;padding:16px 28px;scroll-behavior:smooth;align-items:center;transition:background .28s ease;border:10px solid transparent}
-.media-row:hover .carousel{background:linear-gradient(90deg,var(--panel-bg),var(--panel-dark));border-color:var(--panel-bg)}
-
-/* Card */
-.card{min-width:320px;height:100%;background:#000;border:10px solid #0a0a0a;border-radius:4px;overflow:hidden;position:relative;flex:0 0 auto;box-shadow:0 10px 30px rgba(0,0,0,0.6);cursor:pointer}
-.thumb{position:absolute;inset:0;background-size:cover;background-position:center}
-.card-overlay{position:absolute;left:8px;bottom:8px;color:#fff;font-weight:700;padding:6px 8px;background:rgba(0,0,0,0.45);border-radius:4px;font-size:12px}
-
-/* Arrows */
-.carousel-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:30;border:0;background:transparent;color:var(--pink);font-size:36px;width:54px;height:54px;display:flex;align-items:center;justify-content:center;cursor:pointer}
-.carousel-arrow.left{left:0}
-.carousel-arrow.right{right:0}
-.carousel-arrow::before{content:"";width:40px;height:40px;border-radius:6px;background:rgba(0,0,0,0.0)}
-.carousel-arrow:hover{filter:drop-shadow(0 6px 10px rgba(0,0,0,0.6))}
-
-/* small responsive tweaks */
-@media (max-width:980px){
-  .card{min-width:260px}
-  .carousel-wrap{height:200px}
-}
-@media (max-width:640px){
-  .title{font-size:26px}
-  .carousel-arrow{font-size:28px}
-  .carousel{padding:12px}
-}
-
-/* Footer */
-.site-footer{padding:24px 0;text-align:center;color:var(--muted)}
+  // Al desplazar carouseles, pausa los locales que queden fuera de vista
+  document.querySelectorAll('.carousel').forEach(car=>{
+    car.addEventListener('scroll', ()=>{
+      document.querySelectorAll('.card[data-local="true"]').forEach(card=>{
+        const r = card.getBoundingClientRect();
+        const vw = window.innerWidth || document.documentElement.clientWidth;
+        const vh = window.innerHeight || document.documentElement.clientHeight;
+        const visible = r.right>0 && r.left<vw && r.bottom>0 && r.top<vh;
+        const v = card.querySelector('video'); if (!v) return;
+        if (!visible) safePause(v);
+      });
+    }, { passive:true });
+  });
+});

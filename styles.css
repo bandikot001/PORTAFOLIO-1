@@ -179,3 +179,49 @@ body{
   .fullbleed{padding-inline:16px}
   .about-toggle{font-size:18px}
 }
+
+/* ===== FIX MOBILE: evitar que "Acerca de" se monte en el título ===== */
+@media (max-width: 640px) {
+  .site-header .container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .site-header .title{
+    font-size: clamp(28px, 8vw, 44px);
+    line-height: 1.1;
+    text-align: center;
+    margin: 16px 0 6px;
+  }
+
+  .underline-anim{
+    margin: 6px auto 0;
+  }
+
+  /* Que el bloque Acerca de deje de ser absoluto y baje debajo del título */
+  .about{
+    position: static !important;
+    margin: 12px auto 0;
+    width: 100%;
+    text-align: center;
+    z-index: 0;
+  }
+
+  .about-toggle{
+    position: static !important;
+    display: inline-flex;
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+  /* Si tu panel estaba flotante, en móvil lo apilamos para que empuje contenido */
+  .about-panel{
+    position: static !important;
+    transform: none !important;
+    width: 100%;
+    max-width: 680px;
+    margin: 8px auto 0;
+    box-shadow: none;
+  }
+}

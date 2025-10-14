@@ -1,100 +1,181 @@
-<!doctype html>
-<html lang="es">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Portafolio David Cediel</title>
+:root{
+  /* Color y tipografía */
+  --bg:#292728;
+  --panel-bg:#eaa73a;
+  --panel-dark:#e89b2b;
+  --muted:#cfcfcf;
+  --pink:#d71f61;
+  --title-yellow:#f0a92b;
+  --ff-title:"Orbitron","Segoe UI",Arial,sans-serif;
+  --ff-body:"Open Sans",Arial,sans-serif;
 
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <!-- Header -->
-  <header class="site-header">
-    <div class="container">
-      <h1 class="title">PORTAFOLIO DAVID CEDIEL</h1>
-      <div class="underline-anim" id="underlineAnim" aria-hidden="true"></div>
-    </div>
-  </header>
+  /* Layout */
+  --max-w:1200px;
+  --pad:28px;
+  --gap:18px;
 
-  <main>
-    <!-- Hero -->
-    <section class="hero container">
-      <h2 class="hero-title">CREACIÓN Y EDICIÓN DE VIDEOS</h2>
-      <p class="hero-sub">
-        Grabación y edición tradicional con cámaras profesionales y celulares. Generación de material y de contenido, con ayuda de herramientas IA generadoras de video. Edición en Premier.
-      </p>
-    </section>
+  /* Proporción áurea para ritmos */
+  --phi:1.618;
+  --space:22px;
+}
 
-    <!-- MUSICALES (16:9, full-bleed) -->
-    <section class="media-row" id="musicalesRow">
-      <div class="container narrow"><h3 class="media-title">MUSICALES</h3></div>
-      <div class="carousel-wrap fullbleed">
-        <button class="carousel-arrow left" aria-label="Anterior">&#x25C0;</button>
-        <div class="carousel" data-name="musicales">
-          <div class="card" data-video="p_3IVVkOhiM"><div class="thumb" style="background-image:url('https://img.youtube.com/vi/p_3IVVkOhiM/hqdefault.jpg')"></div></div>
-          <div class="card" data-video="O1JJXV_I0aY"><div class="thumb" style="background-image:url('https://img.youtube.com/vi/O1JJXV_I0aY/hqdefault.jpg')"></div></div>
-          <div class="card" data-video="ipkuuiETDNM"><div class="thumb" style="background-image:url('https://img.youtube.com/vi/ipkuuiETDNM/hqdefault.jpg')"></div></div>
-          <div class="card" data-video="dc5oJkI1rq4"><div class="thumb" style="background-image:url('https://img.youtube.com/vi/dc5oJkI1rq4/hqdefault.jpg')"></div></div>
-          <div class="card" data-video="weunTmGMdsg"><div class="thumb" style="background-image:url('https://img.youtube.com/vi/weunTmGMdsg/hqdefault.jpg')"></div></div>
-          <div class="card" data-video="UnTcmtid_3E"><div class="thumb" style="background-image:url('https://img.youtube.com/vi/UnTcmtid_3E/hqdefault.jpg')"></div></div>
-        </div>
-        <button class="carousel-arrow right" aria-label="Siguiente">&#x25B6;</button>
-      </div>
-    </section>
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{
+  background:var(--bg);
+  color:#f1f1f1;
+  font-family:var(--ff-body);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
 
-    <!-- ARQUITECTURA (16:9, full-bleed con cinta fija) -->
-    <section class="media-row" id="arquitecturaRow">
-      <div class="container narrow"><h3 class="media-title">ARQUITECTURA</h3></div>
-      <div class="carousel-wrap fullbleed">
-        <button class="carousel-arrow left" aria-label="Anterior">&#x25C0;</button>
-        <div class="carousel arquitectura-visible" data-name="arquitectura">
-          <div class="card" data-video="9xNrNO7d7fc"><div class="thumb" style="background-image:url('https://img.youtube.com/vi/9xNrNO7d7fc/hqdefault.jpg')"></div></div>
-          <div class="card" data-video="2kovHZmMM3Y"><div class="thumb" style="background-image:url('https://img.youtube.com/vi/2kovHZmMM3Y/hqdefault.jpg')"></div></div>
-          <div class="card" data-video="EIJuO5EX7As"><div class="thumb" style="background-image:url('https://img.youtube.com/vi/EIJuO5EX7As/hqdefault.jpg')"></div></div>
-          <div class="card" data-video="DYYYPnJRFM8"><div class="thumb" style="background-image:url('https://img.youtube.com/vi/DYYYPnJRFM8/hqdefault.jpg')"></div></div>
-          <div class="card" data-video="VhxzUtWtCB4"><div class="thumb" style="background-image:url('https://img.youtube.com/vi/VhxzUtWtCB4/hqdefault.jpg')"></div></div>
-          <div class="card" data-video="D8IdgJUey_w"><div class="thumb" style="background-image:url('https://img.youtube.com/vi/D8IdgJUey_w/hqdefault.jpg')"></div></div>
-          <div class="card" data-video="3n-DhHLI9jM"><div class="thumb" style="background-image:url('https://img.youtube.com/vi/3n-DhHLI9jM/hqdefault.jpg')"></div></div>
-          <div class="card" data-video="u305GyosM_g"><div class="thumb" style="background-image:url('https://img.youtube.com/vi/u305GyosM_g/hqdefault.jpg')"></div></div>
-          <div class="card" data-video="Lx21SxgKyqo"><div class="thumb" style="background-image:url('https://img.youtube.com/vi/Lx21SxgKyqo/hqdefault.jpg')"></div></div>
-        </div>
-        <button class="carousel-arrow right" aria-label="Siguiente">&#x25B6;</button>
-      </div>
-    </section>
+/* Contenedores */
+.container{max-width:var(--max-w);margin:0 auto;padding-inline:var(--pad)}
+.container.narrow{max-width:calc(var(--max-w)*0.9)}
 
-    <!-- FOTOGRAFÍA (cuadrado, full-bleed, videos locales) -->
-    <section class="media-row" id="fotoRow">
-      <div class="container narrow"><h3 class="media-title">FOTOGRAFÍA</h3></div>
-      <div class="carousel-wrap fullbleed">
-        <button class="carousel-arrow left" aria-label="Anterior">&#x25C0;</button>
-        <div class="carousel" data-name="fotografia">
-          <div class="card" data-local="true"><video preload="none" muted playsinline loop><source src="video1.mp4" type="video/mp4"></video></div>
-          <div class="card" data-local="true"><video preload="none" muted playsinline loop><source src="video2.mp4" type="video/mp4"></video></div>
-          <div class="card" data-local="true"><video preload="none" muted playsinline loop><source src="video3.mp4" type="video/mp4"></video></div>
-          <div class="card" data-local="true"><video preload="none" muted playsinline loop><source src="video4.mp4" type="video/mp4"></video></div>
-          <div class="card" data-local="true"><video preload="none" muted playsinline loop><source src="video5.mp4" type="video/mp4"></video></div>
-          <div class="card" data-local="true"><video preload="none" muted playsinline loop><source src="video6.mp4" type="video/mp4"></video></div>
-          <div class="card" data-local="true"><video preload="none" muted playsinline loop><source src="video7.mp4" type="video/mp4"></video></div>
-        </div>
-        <button class="carousel-arrow right" aria-label="Siguiente">&#x25B6;</button>
-      </div>
-    </section>
-  </main>
+/* Header */
+.site-header{position:relative;padding-block:calc(var(--space)*var(--phi)) calc(var(--space)*0.8)}
+.title{
+  margin:0;text-align:center;
+  font-family:var(--ff-title);text-transform:uppercase;letter-spacing:2px;
+  color:var(--title-yellow);font-size:48px;
+}
+.underline-anim{
+  height:6px;width:40%;max-width:700px;margin:18px auto 0;
+  background:linear-gradient(90deg,var(--title-yellow),rgba(255,255,255,0.03));
+  border-radius:3px;transform-origin:left center;transform:scaleX(0);
+  box-shadow:0 6px 22px rgba(240,178,58,0.09);
+  transition:transform .9s cubic-bezier(.2,.9,.25,1);
+}
 
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <small>© <span id="year"></span> DAVID CEDIEL — Render & Visuals</small>
-      <div class="footer-contacts">
-        <a class="btn btn-whatsapp" href="https://wa.me/573003558180" target="_blank" rel="noopener">📱 Contacto WhatsApp</a>
-        <a class="btn btn-mail" href="mailto:cedielrecords@gmail.com">✉️ Enviar correo</a>
-      </div>
-    </div>
-  </footer>
+/* --- Pestaña Acerca de --- */
+.about{
+  position:fixed;
+  top:clamp(90px,12vh,160px);
+  right:12px;
+  z-index:100;
+}
+.about-toggle{
+  display:inline-flex;align-items:center;gap:10px;
+  background:transparent;border:0;cursor:pointer;
+  font-family:var(--ff-title);color:var(--title-yellow);font-size:22px;
+  padding:6px 8px;border-bottom:3px solid rgba(215,31,97,.6);
+}
+.about-toggle .caret{
+  width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-top:10px solid var(--pink);
+  display:inline-block;transform-origin:center;transition:transform .25s ease;
+}
+.about-panel{
+  position:absolute;right:0;top:48px;
+  width:min(520px,92vw);max-width:520px;
+  background:var(--pink);color:#fff;border-radius:26px;
+  padding:22px 26px 18px 26px;
+  box-shadow:0 18px 50px rgba(0,0,0,.55);
+  transform:translateX(100%);opacity:.0;pointer-events:none;
+  transition:transform .35s cubic-bezier(.2,.9,.25,1), opacity .25s ease;
+}
+.about:hover .about-panel{ transform:translateX(0); opacity:1; pointer-events:auto; }
+.about.open .about-panel{ transform:translateX(0); opacity:1; pointer-events:auto; }
+.about.open .about-toggle .caret{ transform:rotate(180deg) }
+.about-text{margin:0 0 12px;font-size:18px;line-height:1.35}
+.cv-link{
+  display:inline-block;color:#fff;text-decoration:none;font-weight:700;
+  border-bottom:2px solid rgba(255,255,255,.7);padding-bottom:4px
+}
+.cv-link:hover{opacity:.9}
 
-  <script src="script.js"></script>
-</body>
-</html>
+/* Hero */
+.hero{padding-block:calc(var(--space)*0.8) calc(var(--space)*1.2)}
+.hero-title{text-align:center;font-family:var(--ff-title);font-size:36px;margin:0 0 10px}
+.hero-sub{text-align:center;color:var(--muted);max-width:880px;margin:0 auto;line-height:1.45}
 
+/* Secciones */
+.media-row{margin-block:calc(var(--space)*var(--phi))}
+.media-title{font-family:var(--ff-title);color:var(--title-yellow);font-size:28px;margin:0}
 
+/* --- Full-bleed --- */
+.fullbleed{
+  width:100vw;
+  margin-left:50%;
+  transform:translateX(-50%);
+  padding-inline:min(4vw,28px);
+}
+
+/* Carousel */
+.carousel-wrap{position:relative;display:flex;align-items:center}
+.carousel{
+  flex:1;display:flex;gap:var(--gap);align-items:center;
+  overflow-x:auto;scroll-behavior:smooth;
+  padding:18px 0;border:10px solid transparent;border-radius:10px;background:transparent;
+}
+/* Cinta amarilla */
+.carousel-wrap:hover .carousel{
+  background:linear-gradient(90deg,var(--panel-bg),var(--panel-dark));
+  border-color:var(--panel-bg);
+}
+/* Arquitectura siempre visible */
+.arquitectura-visible{
+  background:linear-gradient(90deg,var(--panel-bg),var(--panel-dark)) !important;
+  border-color:var(--panel-bg) !important;
+}
+
+/* Tarjetas */
+.card{
+  position:relative;flex:0 0 auto;height:auto;
+  border-radius:10px;overflow:hidden;background:#000;
+  box-shadow:0 14px 40px rgba(0,0,0,.7);
+  border:12px solid rgba(0,0,0,.55);
+}
+.card iframe,.card video,.thumb{position:absolute;inset:0;width:100%;height:100%;display:block}
+.card video{object-fit:cover}
+.thumb{background-size:cover;background-position:center}
+
+/* Dimensiones fluidas por sección */
+/* Musicales y Arquitectura: 16:9 */
+#musicalesRow .card,
+#arquitecturaRow .card{
+  aspect-ratio:16/9;
+  flex-basis: clamp(280px, 30vw, 420px);
+}
+/* Fotografía: cuadradas */
+#fotoRow .card{
+  aspect-ratio:1/1;
+  flex-basis: clamp(220px, 22vw, 320px);
+}
+
+/* Flechas */
+.carousel-arrow{
+  position:absolute;top:50%;transform:translateY(-50%);
+  z-index:30;border:0;background:transparent;color:var(--pink);
+  font-size:40px;width:56px;height:56px;display:flex;align-items:center;justify-content:center;cursor:pointer
+}
+.carousel-arrow.left{left:6px} .carousel-arrow.right{right:6px}
+.carousel-arrow:hover{filter:drop-shadow(0 8px 16px rgba(0,0,0,.6))}
+
+/* Footer */
+.site-footer{padding-block:calc(var(--space)*1.2) calc(var(--space)*1.6);color:var(--muted)}
+.footer-inner{display:flex;flex-direction:column;gap:14px;align-items:center;justify-content:center}
+.footer-contacts{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:center}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:8px;font-weight:600;text-decoration:none}
+.btn-whatsapp{background:linear-gradient(180deg,#18b46a,#14a55b);color:#fff}
+.btn-mail{background:transparent;color:var(--title-yellow);border:2px solid rgba(240,169,43,0.25)}
+
+/* Responsivo */
+@media (max-width:1100px){
+  .title{font-size:42px}
+  #musicalesRow .card,#arquitecturaRow .card{flex-basis: clamp(260px, 32vw, 380px)}
+  #fotoRow .card{flex-basis: clamp(200px, 28vw, 300px)}
+}
+@media (max-width:780px){
+  .title{font-size:34px}
+  .hero-title{font-size:26px}
+  .carousel-arrow{font-size:28px;width:44px;height:44px}
+  #musicalesRow .card,#arquitecturaRow .card{flex-basis: clamp(240px, 46vw, 360px)}
+  #fotoRow .card{flex-basis: clamp(180px, 42vw, 280px)}
+  .about{right:8px}
+}
+@media (max-width:520px){
+  #musicalesRow .card,#arquitecturaRow .card,#fotoRow .card{flex-basis: 88vw}
+  .fullbleed{padding-inline:16px}
+  .about-toggle{font-size:18px}
+}

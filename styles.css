@@ -192,7 +192,7 @@ body{
     font-size: clamp(28px, 8vw, 44px);
     line-height: 1.1;
     text-align: center;
-    margin: 16px 0 6px;
+    margin: 24px 0 6px;
   }
 
   .underline-anim{
@@ -225,3 +225,4 @@ body{
     box-shadow: none;
   }
 }
+

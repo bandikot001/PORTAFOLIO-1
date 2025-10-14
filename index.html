@@ -23,4 +23,182 @@
     body{
       background:var(--bg);
       color:#f1f1f1;
-      font-family:
+      font-family:var(--ff-body);
+      -webkit-font-smoothing:antialiased;
+    }
+    .container{max-width:var(--max-w);margin:0 auto;padding:28px}
+    .site-header{position:relative;padding-top:28px;padding-bottom:18px;overflow:visible}
+    .header-inner{display:flex;align-items:center;justify-content:space-between}
+    .title{margin:0;font-family:var(--ff-title);color:var(--title-yellow);letter-spacing:2px;font-size:36px;text-transform:uppercase}
+    .underline-anim{height:4px;width:40%;max-width:700px;background:linear-gradient(90deg,var(--title-yellow),rgba(255,255,255,0.03));margin:12px 0 0 36px;transform-origin:left center;transform:scaleX(0);border-radius:3px;box-shadow:0 4px 18px rgba(240,178,58,0.09);transition:transform .9s cubic-bezier(.2,.9,.25,1)}
+    .hero-title{text-align:center;font-family:var(--ff-title);font-size:28px;margin:20px 0 6px;color:#fff}
+    .hero-sub{text-align:center;color:var(--muted);margin:0 0 28px}
+    /* media rows */
+    .media-row{margin:34px 0}
+    .media-title{font-family:var(--ff-title);color:var(--title-yellow);font-size:26px;margin:0 0 12px;padding-left:14px;display:inline-block;}
+    .carousel-wrap{position:relative;display:flex;align-items:center;height:220px;padding:12px 6px;}
+    .carousel{flex:1;height:160px;border-radius:6px;background:transparent;display:flex;gap:18px;overflow-x:auto;padding:16px 28px;scroll-behavior:smooth;align-items:center;transition:background .28s ease;border:10px solid transparent}
+    .media-row:hover .carousel{background:linear-gradient(90deg,var(--panel-bg),var(--panel-dark));border-color:var(--panel-bg)}
+    .card{min-width:320px;height:100%;background:#000;border:10px solid #0a0a0a;border-radius:4px;overflow:hidden;position:relative;flex:0 0 auto;box-shadow:0 10px 30px rgba(0,0,0,0.6);cursor:pointer}
+    .thumb{position:absolute;inset:0;background-size:cover;background-position:center}
+    .card-overlay{position:absolute;left:8px;bottom:8px;color:#fff;font-weight:700;padding:6px 8px;background:rgba(0,0,0,0.45);border-radius:4px;font-size:12px}
+    .carousel-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:30;border:0;background:transparent;color:var(--pink);font-size:36px;width:54px;height:54px;display:flex;align-items:center;justify-content:center;cursor:pointer}
+    .carousel-arrow.left{left:0}
+    .carousel-arrow.right{right:0}
+    .carousel-arrow:hover{filter:drop-shadow(0 6px 10px rgba(0,0,0,0.6))}
+    /* responsive */
+    @media (max-width:980px){ .card{min-width:260px} .carousel-wrap{height:200px} }
+    @media (max-width:640px){ .title{font-size:26px} .carousel-arrow{font-size:28px} .carousel{padding:12px} }
+    .site-footer{padding:24px 0;text-align:center;color:var(--muted)}
+    /* small helpers */
+    .visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1 class="title">PORTAFOLIO DAVID CEDIEL</h1>
+      <div style="width:200px"></div>
+    </div>
+    <div class="underline-anim" id="underlineAnim" aria-hidden="true"></div>
+  </header>
+
+  <main class="main container">
+    <section class="hero">
+      <h2 class="hero-title">CREACION Y EDICIÓN DE VIDEOS</h2>
+      <p class="hero-sub">Experiencia en campo grabando con cámara profesional o celular y edición en Premiere.</p>
+    </section>
+
+    <!-- Media section: Musicales -->
+    <section class="media-row">
+      <h3 class="media-title">MUSICALES</h3>
+      <div class="carousel-wrap">
+        <button class="carousel-arrow left" aria-label="Anterior" data-action="prev">&#x25C0;</button>
+
+        <div class="carousel" data-name="musicales">
+          <div class="card" data-video="p_3IVVkOhiM">
+            <div class="thumb" style="background-image:url('https://img.youtube.com/vi/p_3IVVkOhiM/hqdefault.jpg')"></div>
+          </div>
+          <div class="card" data-video="O1JJXV_I0aY">
+            <div class="thumb" style="background-image:url('https://img.youtube.com/vi/O1JJXV_I0aY/hqdefault.jpg')"></div>
+          </div>
+          <div class="card" data-video="ipkuuiETDNM">
+            <div class="thumb" style="background-image:url('https://img.youtube.com/vi/ipkuuiETDNM/hqdefault.jpg')"></div>
+          </div>
+          <div class="card" data-video="dc5oJkI1rq4">
+            <div class="thumb" style="background-image:url('https://img.youtube.com/vi/dc5oJkI1rq4/hqdefault.jpg')"></div>
+          </div>
+          <div class="card" data-video="weunTmGMdsg">
+            <div class="thumb" style="background-image:url('https://img.youtube.com/vi/weunTmGMdsg/hqdefault.jpg')"></div>
+          </div>
+          <div class="card" data-video="UnTcmtid_3E">
+            <div class="thumb" style="background-image:url('https://img.youtube.com/vi/UnTcmtid_3E/hqdefault.jpg')"></div>
+          </div>
+        </div>
+
+        <button class="carousel-arrow right" aria-label="Siguiente" data-action="next">&#x25B6;</button>
+      </div>
+    </section>
+
+    <!-- Arquitectura (placeholders) -->
+    <section class="media-row">
+      <h3 class="media-title">ARQUITECTURA</h3>
+      <div class="carousel-wrap">
+        <button class="carousel-arrow left" aria-label="Anterior" data-action="prev">&#x25C0;</button>
+
+        <div class="carousel" data-name="arquitectura">
+          <div class="card" data-video="p_3IVVkOhiM"><div class="thumb" style="background-image:url('https://img.youtube.com/vi/p_3IVVkOhiM/hqdefault.jpg')"></div></div>
+          <div class="card" data-video="O1JJXV_I0aY"><div class="thumb" style="background-image:url('https://img.youtube.com/vi/O1JJXV_I0aY/hqdefault.jpg')"></div></div>
+          <div class="card" data-video="ipkuuiETDNM"><div class="thumb" style="background-image:url('https://img.youtube.com/vi/ipkuuiETDNM/hqdefault.jpg')"></div></div>
+        </div>
+
+        <button class="carousel-arrow right" aria-label="Siguiente" data-action="next">&#x25B6;</button>
+      </div>
+    </section>
+
+    <!-- Fotografía (placeholders) -->
+    <section class="media-row">
+      <h3 class="media-title">FOTOGRAFÍA</h3>
+      <div class="carousel-wrap">
+        <button class="carousel-arrow left" aria-label="Anterior" data-action="prev">&#x25C0;</button>
+
+        <div class="carousel" data-name="fotografia">
+          <div class="card" data-video="dc5oJkI1rq4"><div class="thumb" style="background-image:url('https://img.youtube.com/vi/dc5oJkI1rq4/hqdefault.jpg')"></div></div>
+          <div class="card" data-video="weunTmGMdsg"><div class="thumb" style="background-image:url('https://img.youtube.com/vi/weunTmGMdsg/hqdefault.jpg')"></div></div>
+          <div class="card" data-video="UnTcmtid_3E"><div class="thumb" style="background-image:url('https://img.youtube.com/vi/UnTcmtid_3E/hqdefault.jpg')"></div></div>
+        </div>
+
+        <button class="carousel-arrow right" aria-label="Siguiente" data-action="next">&#x25B6;</button>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="container">
+        <small>© DAVID CEDIEL — Render & Visuals</small>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // simple site JS: underline animation + carousel arrows + lazy iframe load autoplay muted
+    (function(){
+      // underline
+      setTimeout(()=> {
+        const u = document.getElementById('underlineAnim');
+        if (u) u.style.transform = 'scaleX(1)';
+      }, 160);
+
+      // arrow scrolling
+      document.querySelectorAll('.carousel-wrap').forEach(wrap => {
+        const car = wrap.querySelector('.carousel');
+        const left = wrap.querySelector('[data-action="prev"]');
+        const right = wrap.querySelector('[data-action="next"]');
+        if (left) left.addEventListener('click', ()=> {
+          const card = car.querySelector('.card');
+          if (!card) return;
+          const w = card.getBoundingClientRect().width + 18;
+          car.scrollBy({ left: -w, behavior: 'smooth' });
+        });
+        if (right) right.addEventListener('click', ()=> {
+          const card = car.querySelector('.card');
+          if (!card) return;
+          const w = card.getBoundingClientRect().width + 18;
+          car.scrollBy({ left: w, behavior: 'smooth' });
+        });
+
+        // mouse wheel -> horizontal
+        car.addEventListener('wheel', (e)=>{
+          if (Math.abs(e.deltaX) > 0) return;
+          e.preventDefault();
+          car.scrollBy({ left: e.deltaY, behavior: 'auto' });
+        }, { passive:false });
+      });
+
+      // IntersectionObserver: when card is 55% visible, insert iframe with autoplay&mute
+      function ytUrl(id){ return 'https://www.youtube.com/embed/'+encodeURIComponent(id)+'?rel=0&autoplay=1&mute=1&showinfo=0&modestbranding=1'; }
+      const obs = new IntersectionObserver((entries)=>{
+        entries.forEach(entry=>{
+          const el = entry.target;
+          if (entry.intersectionRatio >= 0.55){
+            if (!el.querySelector('iframe')){
+              const id = el.dataset.video;
+              if (!id) return;
+              const ifr = document.createElement('iframe');
+              ifr.src = ytUrl(id);
+              ifr.width='100%'; ifr.height='100%'; ifr.frameBorder='0';
+              ifr.allow='autoplay; encrypted-media; picture-in-picture';
+              ifr.style.position='absolute'; ifr.style.top='0'; ifr.style.left='0';
+              el.appendChild(ifr);
+            }
+          } else {
+            const ifr = el.querySelector('iframe');
+            if (ifr) ifr.remove();
+          }
+        });
+      }, { threshold: [0,0.25,0.55,0.9] });
+
+      document.querySelectorAll('.card').forEach(c=> obs.observe(c));
+    })();
+  </script>
+</body>
+</html>
